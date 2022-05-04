@@ -24,5 +24,8 @@ class AuthService {
       password
     });
   }
+  activateCount(email, code){
+        return api.post("/auth/activate/" + email + "/" + code)
+    }
 }
 export default new AuthService();

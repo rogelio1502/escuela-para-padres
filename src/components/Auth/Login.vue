@@ -22,7 +22,7 @@
       <FormErrors :inputErrors="inputErrors"></FormErrors>
 
       <div class="form-group">
-        <div v-if="message" class="alert alert-danger" role="alert">
+        <div v-if="message" class="alert alert-danger text-center" role="alert">
           {{ message }}
         </div>
       </div>

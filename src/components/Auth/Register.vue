@@ -161,6 +161,7 @@ export default {
             this.message = data.message;
             this.successful = true;
             this.loading = false;
+            (this.email = ""), (this.password = "");
           },
           (error) => {
             this.message =

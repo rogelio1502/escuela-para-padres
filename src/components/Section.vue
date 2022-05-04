@@ -118,15 +118,19 @@ export default {
           this.section = response.data[0];
         })
         .catch((err) => {
-          console.log(err);
           switch (err.response.status) {
             case 404:
               if (err.response.data.detail !== undefined) {
-                console.log(err);
                 this.$router.push("/");
               }
-              break;
 
+              break;
+            case 400:
+              if (err.response.data.detail.includes("in this course")) {
+                this.$router.push("/courses");
+              }
+
+              break;
             default:
               break;
           }

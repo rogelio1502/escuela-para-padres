@@ -11,6 +11,7 @@ import AdminLogin from "./components/Admin/AdminLogin.vue";
 import BoardUser from './components/BoardUser.vue'
 import Portal from './components/Admin/Portal.vue'
 import TestAdmin from './components/Admin/TestAdmin.vue'
+import Activate from './components/Activate.vue'
 // lazy-loaded
 // const Profile = () => import ("./components/Profile.vue")
 // const BoardAdmin = () => import ("./components/BoardAdmin.vue")
@@ -117,6 +118,13 @@ const routes = [
         meta: {
             requiresAuth : false
         }
+    },
+    {
+        path: "/activate/:email/:code",
+        component: Activate,
+        meta: {
+            requiresAuth : false
+        }
     }
     
 ];
@@ -139,7 +147,7 @@ router.beforeEach((to, from, next) => {
         return
     }
     
-    if(['/login','/register','/admin/login'].includes(to.path) && loggedIn){
+    if(['/login','/register','/admin/login','/activate'].includes(to.path) && loggedIn){
         next("/")
         return
     }
