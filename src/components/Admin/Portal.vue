@@ -197,6 +197,16 @@ export default {
 </script>
 <template>
   <Loading v-if="some_action" />
+  <AddAdmin
+    id="addAdminModal"
+    @making_action="(d) => (some_action = d)"
+    :reload="getAdmins"
+  />
+  <AddFather
+    id="addFatherModal"
+    @making_action="(d) => (some_action = d)"
+    :reload="getFathers"
+  />
   <div class="container-md">
     <div class="row mt-3">
       <div class="col-md-12">
