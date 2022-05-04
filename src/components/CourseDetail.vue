@@ -315,20 +315,13 @@ export default {
             this.isIn = true;
           } else {
             CourseService.getCourse(this.currentRoute).then((response) => {
+              console.log(response);
               this.course = response.data;
               this.enabled = this.course.enabled;
-              this.some_action = false;
+              console.log(this.enabled);
               this.isIn = false;
             });
           }
-
-          if (this.enabled || this.adminUser) {
-            this.some_action = true;
-
-            this.getSections();
-          }
-
-          this.loaded = true;
         })
         .catch((err) => {
           console.log(err);
@@ -391,6 +384,14 @@ export default {
     this.getData();
   },
   watch: {
+    enabled() {
+      if (this.enabled || this.adminUser) {
+        this.some_action = true;
+
+        this.getSections();
+        this.loaded = true;
+      }
+    },
     isIn() {
       //console.log(this.isIn);
     },
@@ -512,5 +513,9 @@ export default {
 img {
   height: auto;
   max-width: 85%;
+}
+ol {
+  margin-block-start: 0px;
+  padding-inline-start: 0px;
 }
 </style>

@@ -23,29 +23,33 @@ import DataView from "primevue/dataview";
 
   <div class="container-md">
     <div class="row mt-3">
-      <header class="d-flex">
-        <h1 class="mr-5"><i class="tamano bi bi-book"> </i> Cursos</h1>
-        <button
-          class="btn btn-success tb"
-          data-toggle="modal"
-          data-target="#addCourseModal"
-        >
-          Añadir Curso
-        </button>
-      </header>
+      <div class="col-md-12">
+        <header class="d-flex">
+          <h1 class="mr-5"><i class="tamano bi bi-book"> </i> Cursos</h1>
+          <button
+            class="btn btn-success tb"
+            data-toggle="modal"
+            data-target="#addCourseModal"
+          >
+            Añadir Curso
+          </button>
+        </header>
+      </div>
     </div>
     <div class="row"></div>
     <div class="row mt-3">
       <div class="col-md-12">
-        <p>
-          Si te inscribiste en un curso y no aparece aquí. Dirigete hacía la
-          sección
-          <router-link to="/home"> HOME </router-link>.
-        </p>
+        <div class="alert alert-info" role="alert">
+          <p class="text-center">
+            Si te inscribiste en un curso y no aparece aquí. Dirigete hacía la
+            sección
+            <router-link to="/home"> HOME </router-link>.
+          </p>
+        </div>
       </div>
     </div>
 
-    <div v-if="loaded && !courses.length">
+    <div class="mt-5 mb-5" v-if="loaded && !courses.length">
       <h3 class="text-center">
         Actualmente no hay ningún curso al cuál puedas inscribirte.
       </h3>
@@ -74,6 +78,7 @@ import DataView from "primevue/dataview";
     </div>
 
     <DataView
+      v-if="courses.length"
       class="mt-1"
       :value="courses"
       paginatorPosition="both"

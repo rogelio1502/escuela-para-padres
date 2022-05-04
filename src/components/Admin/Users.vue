@@ -21,175 +21,234 @@ import Button from "primevue/button";
     <div class="mt-3">
       <h1><i class="tamano bi bi-people"></i> Usuarios</h1>
     </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <h2 class="mt-5">Admins</h2>
-        <DataTable
-          class="table"
-          :value="admins"
-          :paginator="true"
-          :rows="10"
-          responsiveLayout="scroll"
-          :loading="admins_loaded"
-          ref="dta"
-        >
-          <template #loading> Cargando datos... </template>
-          <template #header>
-            <div class="d-flex">
-              <div style="text-align: left">
-                <Button
-                  class="btn btn-warning mr-2"
-                  icon="pi pi-external-link"
-                  label="Export CSV"
-                  @click="exportAdminsCSV($event)"
-                />
-              </div>
-              <div style="text-align: left">
-                <Button
-                  class="btn btn-warning mr-2"
-                  data-toggle="modal"
-                  label="Agregar"
-                  data-target="#addAdminModal"
-                />
-              </div>
-            </div>
-          </template>
-          <template #empty> Ningún Admin se ha registrado. </template>
-          <Column field="id" header="Id" :sortable="true"></Column>
-          <Column field="email" header="Email" :sortable="true"></Column>
-          <Column field="added_by" header="Tipo de Registro" :sortable="true">
-            <template #body="slotProps">
-              <div v-if="slotProps.data.added_by" class="btn btn-success">
-                Añadido por el usuario con el ID {{ slotProps.data.added_by }}
-              </div>
-              <div v-if="!slotProps.data.added_by" class="btn btn-info">
-                Propio
-              </div>
-            </template>
-          </Column>
-          <Column field="enabled" header="Status" :sortable="true">
-            <template #body="slotProps">
-              <div v-if="slotProps.data.enabled" class="btn btn-success">
-                Activo
-              </div>
-              <div v-if="!slotProps.data.enabled" class="btn btn-warning">
-                Desactivado
-              </div>
-            </template></Column
+    <div class="mt-3">
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            id="home-tab"
+            data-toggle="tab"
+            href="#home"
+            role="tab"
+            aria-controls="home"
+            aria-selected="true"
           >
-          <Column header="Acciones">
-            <template #body="slotProps">
-              <div
-                v-if="
-                  slotProps.data.enabled &&
-                  slotProps.data.email !== currentUserEmail
-                "
+            <h2>Admins</h2>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            id="profile-tab"
+            data-toggle="tab"
+            href="#profile"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            <h2>Padres</h2>
+          </a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+        >
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <DataTable
+                class="table"
+                :value="admins"
+                :paginator="true"
+                :rows="10"
+                responsiveLayout="scroll"
+                :loading="admins_loaded"
+                ref="dta"
               >
-                <button
-                  class="btn btn-warning"
-                  @click="setStatus(slotProps.data.id)"
+                <template #loading> Cargando datos... </template>
+                <template #header>
+                  <div class="d-flex">
+                    <div style="text-align: left">
+                      <Button
+                        class="btn btn-warning mr-2"
+                        icon="pi pi-external-link"
+                        label="Export CSV"
+                        @click="exportAdminsCSV($event)"
+                      />
+                    </div>
+                    <div style="text-align: left">
+                      <Button
+                        class="btn btn-warning mr-2"
+                        data-toggle="modal"
+                        label="Agregar"
+                        data-target="#addAdminModal"
+                      />
+                    </div>
+                  </div>
+                </template>
+                <template #empty> Ningún Admin se ha registrado. </template>
+                <Column field="id" header="Id" :sortable="true"></Column>
+                <Column field="email" header="Email" :sortable="true"></Column>
+                <Column
+                  field="added_by"
+                  header="Tipo de Registro"
+                  :sortable="true"
                 >
-                  Deshabilitar
-                </button>
-              </div>
-              <div v-if="!slotProps.data.enabled">
-                <button
-                  class="btn btn-info"
-                  @click="setStatus(slotProps.data.id)"
+                  <template #body="slotProps">
+                    <div v-if="slotProps.data.added_by" class="btn btn-success">
+                      Añadido por el usuario con el ID
+                      {{ slotProps.data.added_by }}
+                    </div>
+                    <div v-if="!slotProps.data.added_by" class="btn btn-info">
+                      Propio
+                    </div>
+                  </template>
+                </Column>
+                <Column field="enabled" header="Status" :sortable="true">
+                  <template #body="slotProps">
+                    <div v-if="slotProps.data.enabled" class="btn btn-success">
+                      Activo
+                    </div>
+                    <div v-if="!slotProps.data.enabled" class="btn btn-warning">
+                      Desactivado
+                    </div>
+                  </template></Column
                 >
-                  Habilitar
-                </button>
-              </div>
-            </template>
-          </Column>
+                <Column header="Acciones">
+                  <template #body="slotProps">
+                    <div
+                      v-if="
+                        slotProps.data.enabled &&
+                        slotProps.data.email !== currentUserEmail
+                      "
+                    >
+                      <button
+                        class="btn btn-warning"
+                        @click="setStatus(slotProps.data.id)"
+                      >
+                        Deshabilitar
+                      </button>
+                    </div>
+                    <div v-if="!slotProps.data.enabled">
+                      <button
+                        class="btn btn-info"
+                        @click="setStatus(slotProps.data.id)"
+                      >
+                        Habilitar
+                      </button>
+                    </div>
+                  </template>
+                </Column>
 
-          <Column field="created" header="Registrado" :sortable="true"></Column>
-        </DataTable>
-      </div>
-    </div>
-    <br />
-    <br />
-    <div class="row">
-      <div class="col-md-12">
-        <h2>Padres</h2>
-
-        <DataTable
-          :value="users"
-          :paginator="true"
-          :rows="10"
-          responsiveLayout="scroll"
-          class="table"
-          :loading="fathers_loaded"
-          ref="dtf"
-        >
-          <template #loading> Cargando datos... </template>
-          <template #header>
-            <div class="d-flex">
-              <div style="text-align: left">
-                <Button
-                  class="mr-2"
-                  icon="pi pi-external-link"
-                  label="Export CSV"
-                  @click="exportFathersCSV($event)"
-                />
-              </div>
-              <div style="text-align: left">
-                <Button
-                  class="btn btn-warning mr-2"
-                  data-toggle="modal"
-                  label="Agregar"
-                  data-target="#addFatherModal"
-                />
-              </div>
+                <Column
+                  field="created"
+                  header="Registrado"
+                  :sortable="true"
+                ></Column>
+              </DataTable>
             </div>
-          </template>
-          <template #empty> Ningún Padre se ha registrado. </template>
-          <Column field="id" header="Id" :sortable="true"></Column>
-          <Column field="email" header="Email" :sortable="true"></Column>
-          <Column field="added_by" header="Tipo de Registro" :sortable="true">
-            <template #body="slotProps">
-              <div v-if="slotProps.data.added_by" class="btn btn-success">
-                Añadido por el usuario con el ID{{ slotProps.data.added_by }}
-              </div>
-              <div v-if="!slotProps.data.added_by" class="btn btn-info">
-                Propio
-              </div>
-            </template>
-          </Column>
-          <Column field="enabled" header="Status" :sortable="true">
-            <template #body="slotProps">
-              <div v-if="slotProps.data.enabled" class="btn btn-success">
-                Activo
-              </div>
-              <div v-if="!slotProps.data.enabled" class="btn btn-warning">
-                Desactivado
-              </div>
-            </template></Column
-          >
-          <Column header="Acciones">
-            <template #body="slotProps">
-              <div v-if="slotProps.data.enabled">
-                <button
-                  class="btn btn-warning"
-                  @click="setStatus(slotProps.data.id)"
+          </div>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="profile"
+          role="tabpanel"
+          aria-labelledby="profile-tab"
+        >
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <DataTable
+                :value="users"
+                :paginator="true"
+                :rows="10"
+                responsiveLayout="scroll"
+                class="table"
+                :loading="fathers_loaded"
+                ref="dtf"
+              >
+                <template #loading> Cargando datos... </template>
+                <template #header>
+                  <div class="d-flex">
+                    <div style="text-align: left">
+                      <Button
+                        class="mr-2"
+                        icon="pi pi-external-link"
+                        label="Export CSV"
+                        @click="exportFathersCSV($event)"
+                      />
+                    </div>
+                    <div style="text-align: left">
+                      <Button
+                        class="btn btn-warning mr-2"
+                        data-toggle="modal"
+                        label="Agregar"
+                        data-target="#addFatherModal"
+                      />
+                    </div>
+                  </div>
+                </template>
+                <template #empty> Ningún Padre se ha registrado. </template>
+                <Column field="id" header="Id" :sortable="true"></Column>
+                <Column field="email" header="Email" :sortable="true"></Column>
+                <Column
+                  field="added_by"
+                  header="Tipo de Registro"
+                  :sortable="true"
                 >
-                  Deshabilitar
-                </button>
-              </div>
-              <div v-if="!slotProps.data.enabled">
-                <button
-                  class="btn btn-info"
-                  @click="setStatus(slotProps.data.id)"
+                  <template #body="slotProps">
+                    <div v-if="slotProps.data.added_by" class="btn btn-success">
+                      Añadido por el usuario con el ID{{
+                        slotProps.data.added_by
+                      }}
+                    </div>
+                    <div v-if="!slotProps.data.added_by" class="btn btn-info">
+                      Propio
+                    </div>
+                  </template>
+                </Column>
+                <Column field="enabled" header="Status" :sortable="true">
+                  <template #body="slotProps">
+                    <div v-if="slotProps.data.enabled" class="btn btn-success">
+                      Activo
+                    </div>
+                    <div v-if="!slotProps.data.enabled" class="btn btn-warning">
+                      Desactivado
+                    </div>
+                  </template></Column
                 >
-                  Habilitar
-                </button>
-              </div>
-            </template>
-          </Column>
+                <Column header="Acciones">
+                  <template #body="slotProps">
+                    <div v-if="slotProps.data.enabled">
+                      <button
+                        class="btn btn-warning"
+                        @click="setStatus(slotProps.data.id)"
+                      >
+                        Deshabilitar
+                      </button>
+                    </div>
+                    <div v-if="!slotProps.data.enabled">
+                      <button
+                        class="btn btn-info"
+                        @click="setStatus(slotProps.data.id)"
+                      >
+                        Habilitar
+                      </button>
+                    </div>
+                  </template>
+                </Column>
 
-          <Column field="created" header="Registrado" :sortable="true"></Column>
-        </DataTable>
+                <Column
+                  field="created"
+                  header="Registrado"
+                  :sortable="true"
+                ></Column>
+              </DataTable>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

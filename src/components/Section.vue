@@ -7,49 +7,51 @@ import YouTube from "vue3-youtube";
   <div v-if="!loaded">
     <div class="spinner-border" role="status"></div>
   </div>
-  <div v-if="section && loaded" class="row mt-5">
-    <div class="col-md-12">
-      <div class="card" :class="{ viewed: isViewed }">
-        <YouTube
-          :src="section.video_url"
-          @state-change="onStateChange"
-          ref="youtube"
-          width="100%"
-          height="500"
-          fs="0"
-        />
-        <div class="card-body">
-          <div class="card-title" v-if="section.name">
-            {{ section.name.toUpperCase() }}
+  <div class="container-md">
+    <div v-if="section && loaded" class="row mt-5">
+      <div class="col-md-12">
+        <div class="card" :class="{ viewed: isViewed }">
+          <div class="card-title mt-2" v-if="section.name">
+            <h1 class="text-center">{{ section.name.toUpperCase() }}</h1>
           </div>
-          <div class="card-text" v-if="section.summary">
-            {{ section.summary.toUpperCase() }}
+          <YouTube
+            :src="section.video_url"
+            @state-change="onStateChange"
+            ref="youtube"
+            width="100%"
+            height="500"
+            fs="0"
+          />
+          <div class="card-body">
+            <div class="card-text" v-if="section.summary">
+              {{ section.summary.toUpperCase() }}
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="d-flex justify-content-between">
+              <router-link
+                :to="'/courses/detail/' + section.course_id"
+                class="btn btn-primary"
+              >
+                Volver al curso
+              </router-link>
+              <span v-if="isViewed" title="Visto">
+                Visto
+                <i
+                  class="bi bi-check2-square text-success"
+                  style="font-size: 18px"
+                ></i>
+              </span>
+              <span v-else title="No Visto">
+                Pendiente <i class="bi bi-app"></i>
+              </span>
+            </div>
           </div>
         </div>
-        <div class="card-footer">
-          <div class="d-flex justify-content-between">
-            <router-link
-              :to="'/courses/detail/' + section.course_id"
-              class="btn btn-primary"
-            >
-              Volver al curso
-            </router-link>
-            <span v-if="isViewed" title="Visto">
-              Visto
-              <i
-                class="bi bi-check2-square text-success"
-                style="font-size: 18px"
-              ></i>
-            </span>
-            <span v-else title="No Visto">
-              Pendiente <i class="bi bi-app"></i>
-            </span>
-          </div>
-        </div>
-      </div>
 
-      <div class="LogoNombre text-center">
-        <img src="https://i.imgur.com/6cUAZb4.png" alt="Logo Fundacion" />
+        <div class="LogoNombre text-center">
+          <img src="https://i.imgur.com/6cUAZb4.png" alt="Logo Fundacion" />
+        </div>
       </div>
     </div>
   </div>
