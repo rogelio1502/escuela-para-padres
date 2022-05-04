@@ -310,9 +310,17 @@ export default {
           if (response.data[0] !== undefined) {
             this.course = response.data[0].Courses;
             this.enabled = this.course.enabled;
+            console.log(this.enabled);
+
             this.some_action = false;
 
             this.isIn = true;
+            if (this.enabled || this.adminUser) {
+              this.some_action = true;
+
+              this.getSections();
+              this.loaded = true;
+            }
           } else {
             CourseService.getCourse(this.currentRoute).then((response) => {
               console.log(response);
@@ -320,6 +328,12 @@ export default {
               this.enabled = this.course.enabled;
               console.log(this.enabled);
               this.isIn = false;
+              if (this.enabled || this.adminUser) {
+                this.some_action = true;
+
+                this.getSections();
+                this.loaded = true;
+              }
             });
           }
         })
@@ -384,14 +398,7 @@ export default {
     this.getData();
   },
   watch: {
-    enabled() {
-      if (this.enabled || this.adminUser) {
-        this.some_action = true;
-
-        this.getSections();
-        this.loaded = true;
-      }
-    },
+    enabled() {},
     isIn() {
       //console.log(this.isIn);
     },
