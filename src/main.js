@@ -14,6 +14,7 @@ import 'primevue/resources/themes/saga-blue/theme.css  '
 import 'primevue/resources/primevue.min.css  '               
 import 'primeicons/primeicons.css  '
 import 'sweetalert2/dist/sweetalert2.min.css';
+import './main.scss'
 setupInterceptors(store);
 
 createApp(App).use(PrimeVue).use(router).use(store).mount("#app");

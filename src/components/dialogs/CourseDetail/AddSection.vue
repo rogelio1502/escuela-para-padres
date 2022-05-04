@@ -75,17 +75,33 @@ export default {
   methods: {
     validations() {
       this.inputErrors = [];
-      if (this.section_name.trim().length < 1) {
-        this.inputErrors.push("Longitud debe ser mayor a 0");
+      if (this.section_name.length < 1) {
+        this.inputErrors.push(
+          "Longitud del nombre de la sección debe ser mayor a 0"
+        );
       }
-      if (this.section_desc.trim().length < 10) {
+      if (this.section_name.length > 45) {
+        this.inputErrors.push(
+          "Longitud del nombre de la sección debe ser menor a 45"
+        );
+      }
+      if (this.section_desc.length < 10) {
         this.inputErrors.push("Descripción debe tener al menos 10 caracteres.");
       }
-      if (this.section_video.trim().length < 1) {
+      if (this.section_desc.length > 255) {
+        this.inputErrors.push("Descripción debe tener máximo 255 caracteres.");
+      }
+      if (this.section_video.length < 1) {
         this.inputErrors.push(
           "La url del video debe ser mayor a 0 caracteres."
         );
       }
+      if (this.section_video.length > 255) {
+        this.inputErrors.push(
+          "La url del video debe ser menor a 255 caracteres."
+        );
+      }
+
       if (this.inputErrors.length) {
         return false;
       }
@@ -133,6 +149,26 @@ export default {
       this.section_desc = "";
       this.section_video = "";
       this.inputErrors = [];
+    },
+  },
+  watch: {
+    section_name() {
+      if (this.section_name == " ") {
+        this.section_name = "";
+      }
+      this.section_name = this.section_name.replace("  ", " ");
+    },
+    section_desc() {
+      if (this.section_desc == " ") {
+        this.section_desc = "";
+      }
+      this.section_desc = this.section_desc.replace("  ", " ");
+    },
+    section_video() {
+      if (this.section_video == " ") {
+        this.section_video = "";
+      }
+      this.section_video = this.section_video.replace(" ", "");
     },
   },
 };

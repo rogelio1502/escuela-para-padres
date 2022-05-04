@@ -113,17 +113,30 @@ export default {
     },
     validations() {
       this.inputErrors = [];
-      if (this.course_name.trim().length < 1) {
+
+      if (this.course_name.length < 1) {
         this.inputErrors.push(
           "Longitud de Nombre del curso debe ser mayor a 0"
         );
       }
-      if (this.course_desc.trim().length < 10) {
+      if (this.course_name.length > 45) {
+        this.inputErrors.push(
+          "Longitud de Nombre del curso debe ser menor a 45"
+        );
+      }
+      if (this.course_desc.length < 10) {
         this.inputErrors.push(
           "Longitud de Descripción del curso debe ser mayor a 10"
         );
       }
-
+      if (this.course_desc.length > 255) {
+        this.inputErrors.push(
+          "Longitud de Descripción del curso debe ser menor a 255"
+        );
+      }
+      if (this.file === null) {
+        this.inputErrors.push("La imagen de portada es requerida.");
+      }
       if (this.inputErrors.length) {
         return false;
       }
@@ -207,6 +220,18 @@ export default {
   watch: {
     shown() {
       this.getCourse();
+    },
+    course_name() {
+      if (this.course_name == " ") {
+        this.course_name = "";
+      }
+      this.course_name = this.course_name.replace("  ", " ");
+    },
+    course_desc() {
+      if (this.course_desc == " ") {
+        this.course_desc = "";
+      }
+      this.course_desc = this.course_desc.replace("  ", " ");
     },
   },
 };

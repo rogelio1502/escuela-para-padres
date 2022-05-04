@@ -87,17 +87,40 @@ export default {
   methods: {
     validations() {
       this.inputErrors = [];
-      if (this.question.length < 5) {
+      if (this.question.trim().length < 5) {
         this.inputErrors.push("La pregunta debe tener al menos 5 caracteres");
       }
-      if (this.correct_answer.length < 1) {
+      if (this.question.trim().length > 100) {
+        this.inputErrors.push("La pregunta debe como máximo 100 caracteres");
+      }
+      if (this.correct_answer.trim().length < 1) {
         this.inputErrors.push(
           "La respuesta correcta debe tener al menos un caracter"
         );
       }
-      if (this.fake1.length < 1) {
+      if (this.correct_answer.trim().length > 50) {
+        this.inputErrors.push(
+          "La respuesta correcta debe tener máximo 50 caracteres."
+        );
+      }
+      if (this.fake1.trim().length < 1) {
         this.inputErrors.push(
           "La respuesta incorrecta 1 debe tener al menos un caracter"
+        );
+      }
+      if (this.fake1.trim().length > 50) {
+        this.inputErrors.push(
+          "La respuesta incorrecta 1 debe tener máximo 50 caracteres."
+        );
+      }
+      if (this.fake2.trim().length > 50) {
+        this.inputErrors.push(
+          "La respuesta incorrecta 2 debe tener máximo 50 caracteres."
+        );
+      }
+      if (this.fake2.trim().length > 50) {
+        this.inputErrors.push(
+          "La respuesta incorrecta 3 debe tener máximo 50 caracteres."
         );
       }
 
@@ -155,6 +178,38 @@ export default {
       this.fake3 = "";
       this.correct_answer = "";
       this.question = "";
+    },
+  },
+  watch: {
+    fake1() {
+      if (this.fake1 == " ") {
+        this.fake1 = "";
+      }
+      this.fake1 = this.fake1.replace("  ", " ");
+    },
+    fake2() {
+      if (this.fake2 == " ") {
+        this.fake2 = "";
+      }
+      this.fake2 = this.fake2.replace("  ", " ");
+    },
+    fake3() {
+      if (this.fake3 == " ") {
+        this.fake3 = "";
+      }
+      this.fake3 = this.fake3.replace("  ", " ");
+    },
+    correct_answer() {
+      if (this.correct_answer == " ") {
+        this.correct_answer = "";
+      }
+      this.correct_answer = this.correct_answer.replace("  ", " ");
+    },
+    question() {
+      if (this.question == " ") {
+        this.question = "";
+      }
+      this.question = this.question.replace("  ", " ");
     },
   },
 };

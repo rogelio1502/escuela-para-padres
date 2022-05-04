@@ -65,8 +65,13 @@ export default {
   methods: {
     validations() {
       this.inputErrors = [];
-      if (this.email.length < 6) {
+      if (this.email.trim().length < 6) {
         this.inputErrors.push("La longitud minima de un correo es de 6.");
+      }
+      if (this.email.trim().length > 100) {
+        this.inputErrors.push(
+          "La longitud máxima aceptada para un correo es de 100."
+        );
       }
       if (
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) ==
@@ -74,9 +79,14 @@ export default {
       ) {
         this.inputErrors.push("Email inválido.");
       }
-      if (this.password.length < 7) {
+      if (this.password.trim().length < 7) {
         this.inputErrors.push(
           "La longitud de la contraseña debe ser mayor a 7."
+        );
+      }
+      if (this.password.trim().length > 40) {
+        this.inputErrors.push(
+          "La longitud de la contraseña debe ser menor a 40."
         );
       }
       if (this.password != this.password2) {
@@ -138,6 +148,17 @@ export default {
       this.email = "";
       this.password = "";
       this.password2 = "";
+    },
+  },
+  watch: {
+    email() {
+      this.email = this.email.replace(" ", "");
+    },
+    password() {
+      this.password = this.password.replace(" ", "");
+    },
+    password2() {
+      this.password2 = this.password2.replace(" ", "");
     },
   },
   computed: {

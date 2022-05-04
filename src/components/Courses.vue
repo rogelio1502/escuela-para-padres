@@ -96,7 +96,7 @@ import DataView from "primevue/dataview";
                 <img :src="slotProps.data.cover" alt="" />
               </figure>
               <div class="card-title mt-4">
-                <h3 class="header expansion">
+                <h3 class="title header expansion">
                   <a :href="'courses/detail/' + slotProps.data.id">{{
                     slotProps.data.name.toUpperCase()
                   }}</a>

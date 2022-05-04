@@ -224,7 +224,7 @@ export default {
           role="tab"
           aria-controls="home"
           aria-selected="true"
-          ><h3>Cursos</h3></a
+          ><h2>Cursos</h2></a
         >
       </li>
       <li class="nav-item">
@@ -237,7 +237,7 @@ export default {
           aria-controls="profile"
           aria-selected="false"
         >
-          <h3>Tests</h3>
+          <h2>Tests</h2>
         </a>
       </li>
       <li class="nav-item">
