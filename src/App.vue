@@ -4,6 +4,14 @@ import Footer from "./components/Footer/Footer.vue";
 </script>
 
 <template>
+  <div class="messenger-icon">
+    <a
+      href="https://www.messenger.com/t/17849101049710876"
+      target="_blank"
+      title="Enviar Mensaje"
+      ><i class="bi bi-messenger"></i
+    ></a>
+  </div>
   <NavBar></NavBar>
   <Footer></Footer>
 </template>
@@ -28,4 +36,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.messenger-icon {
+  position: fixed;
+  z-index: 100;
+  bottom: 0px;
+  right: 0px;
+}
+.messenger-icon a {
+  font-size: 50px;
+}
+.messenger-icon a :hover {
+  font-size: 75px;
+  transition: 1s;
+}
+</style>

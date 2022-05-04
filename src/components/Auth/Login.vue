@@ -29,13 +29,15 @@
     </form>
 
     <div class="text-center fs-6">
-      <a href="#">¿Olvidaste tu contraseña?</a> o
+      <a href="#" @click="resetPassword">¿Olvidaste tu contraseña?</a> o
       <router-link to="/register"> Únete</router-link>
     </div>
   </div>
 </template>
 <script>
 import FormErrors from "../dialogs/FormErrors.vue";
+import Swal from "sweetalert2";
+import authService from "../../services/auth.service";
 export default {
   name: "Login",
 
@@ -59,6 +61,46 @@ export default {
   //   }
   // },
   methods: {
+    async resetPassword() {
+      Swal.fire({
+        title: "INFO",
+        text: "¡En mantenimiento!, estamos trabajando en esta nueva funcionalidad por ahora, ¡intentalo más tarde.!",
+      });
+      return;
+      await Swal.fire({
+        title: "Ingresa tu correo para restaurar la contraseña",
+        input: "email",
+        inputLabel: "Correo electrónico",
+        inputPlaceholder: "Tu correo",
+      }).then((response) => {
+        if (response.isConfirmed) {
+          authService
+            .reset_password_login(response.value)
+            .then((response) => {
+              Swal.fire({
+                icon: "success",
+                title: "!Tu contraseña se ha restaurado!",
+                text: "Dirigete a tu correo para más información.",
+              });
+            })
+            .catch((err) => {
+              switch (err.response.status) {
+                case 400:
+                  let _err = err.response.data.detail;
+                  Swal.fire({
+                    icon: "info",
+                    title: "!Ups!",
+                    text: _err,
+                  });
+                  break;
+
+                default:
+                  break;
+              }
+            });
+        }
+      });
+    },
     validations() {
       this.inputErrors = [];
       if (this.email.length < 1) {

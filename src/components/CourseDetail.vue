@@ -391,7 +391,10 @@ export default {
       return userService.getStatus(this.currentUserEmail, this.currentRoute);
     },
     getCertificate() {
-      alert("En mantenimiento");
+      Swal.fire({
+        title: "INFO",
+        text: "¡En mantenimiento!, estamos trabajando en esta nueva funcionalidad por ahora, ¡intentalo más tarde!",
+      });
     },
   },
   mounted() {

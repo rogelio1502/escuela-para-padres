@@ -30,7 +30,10 @@ export default {
   },
   methods: {
     getCertificate() {
-      alert("En mantenimiento");
+      Swal.fire({
+        title: "INFO",
+        text: "¡En mantenimiento!, estamos trabajando en esta nueva funcionalidad por ahora, ¡intentalo más tarde.!",
+      });
     },
     answered(e) {
       this.selectedAnswer = e.target.value;
