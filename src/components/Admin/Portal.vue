@@ -248,7 +248,7 @@ export default {
           href="#admins"
           role="tab"
           aria-controls="admins"
-          aria-selected="true"
+          aria-selected="false"
         >
           <h2>Admins</h2>
         </a>
@@ -429,7 +429,7 @@ export default {
         </div>
       </div>
       <div
-        class="tab-pane fade show active"
+        class="tab-pane fade show"
         id="admins"
         role="tabpanel"
         aria-labelledby="admins-tab"
