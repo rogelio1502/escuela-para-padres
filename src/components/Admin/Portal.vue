@@ -287,12 +287,15 @@ export default {
             >
               <template #loading> Cargando datos... </template>
               <template #header>
-                <div style="text-align: left">
+                <div style="text-align: left" class="d-flex">
                   <Button
                     icon="pi pi-external-link"
                     label="Export CSV"
                     @click="exportAdminsCSV($event)"
                   />
+                </div>
+                <div>
+                  <p>Cursos Registrados: {{ courses.length }}</p>
                 </div>
               </template>
               <template #empty> Ningún curso se ha registrado. </template>
@@ -557,6 +560,7 @@ export default {
                       @click="exportFathersCSV($event)"
                     />
                   </div>
+
                   <div style="text-align: left">
                     <Button
                       class="btn btn-warning mr-2"
@@ -565,6 +569,9 @@ export default {
                       data-target="#addFatherModal"
                     />
                   </div>
+                </div>
+                <div>
+                  <p>Padres Registrados: {{ users.length }}</p>
                 </div>
               </template>
               <template #empty> Ningún Padre se ha registrado. </template>

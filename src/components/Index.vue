@@ -16,26 +16,32 @@
 
     <div class="carousel-inner" role="listbox">
       <div class="carousel-item active">
-        <div class="view img-fluid">
-          <img src="https://i.imgur.com/9h6vtta.png" class="d-block w-100" />
+        <div class="view outer-image-container">
+          <img
+            src="https://i.imgur.com/9h6vtta.png"
+            class="d-block w-100 img-responsive"
+          />
         </div>
 
         <div class="carousel-caption">
           <div class="animated fadeInDown">
-            <h3 class="h3-responsive">¡Es Gratis!</h3>
+            <h3>¡Es Gratis!</h3>
             <p>Nunca es tarde para aprender</p>
           </div>
         </div>
       </div>
 
       <div class="carousel-item">
-        <div class="outer-image-container">
-          <img src="https://i.imgur.com/2fYFOSt.png" class="d-block w-100" />
+        <div class="view outer-image-container">
+          <img
+            src="https://i.imgur.com/2fYFOSt.png"
+            class="d-block w-100 img-responsive"
+          />
         </div>
 
         <div class="carousel-caption">
           <div class="animated fadeInDown">
-            <h3 class="h3-responsive">Anímate</h3>
+            <h3>Anímate</h3>
             <p>Cualquier persona se puede registrar</p>
           </div>
         </div>
@@ -43,12 +49,15 @@
 
       <div class="carousel-item">
         <div class="view outer-image-container">
-          <img src="https://i.imgur.com/fIGXc50.png" class="d-block w-100" />
+          <img
+            src="https://i.imgur.com/fIGXc50.png"
+            class="d-block w-100 img-responsive"
+          />
         </div>
 
         <div class="carousel-caption">
           <div class="animated fadeInDown">
-            <h3 class="h3-responsive">Contenido Constante</h3>
+            <h3>Contenido Constante</h3>
             <p>
               Aprender nunca está de más, espera las próximas actualizaciones
             </p>
@@ -292,25 +301,19 @@
 * {
   font-family: "Poppins", sans-serif;
 }
-
-/* /* .card {
+.card {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-} */
-
-p {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 20px;
-  font-weight: normal;
-  line-height: 32px;
 }
-.carousel-item {
-  height: 60vh;
-  min-height: 350px;
-  background: no-repeat center center scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.outer-image-container {
+  max-width: 100%;
+  max-height: 380px;
+}
+.item img {
+  position: absolute;
+  object-fit: cover;
+  top: 0;
+  left: 0;
+  min-height: 500px;
 }
 </style>
 
