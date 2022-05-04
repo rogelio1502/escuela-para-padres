@@ -3,7 +3,7 @@ import Home from "./components/Father/Home.vue";
 import Login from "./components/Auth/Login.vue";
 import Register from "./components/Auth/Register.vue";
 import Index from "./components/Index.vue";
-import Users from "./components/Admin/Users.vue";
+// import Users from "./components/Admin/Users.vue";
 import Courses from "./components/Courses.vue";
 import CourseDetail from "./components/CourseDetail.vue";
 import Section from './components/Section.vue';
@@ -42,16 +42,16 @@ const routes = [
             requiresAuth: true,
         }
     },
-    {
-        path: "/admin/users",
-        component: Users,
-        name: "users",
-        meta: {
-            requiresAuth: true,
-            adminView: true,
+    // {
+    //     path: "/admin/users",
+    //     component: Users,
+    //     name: "users",
+    //     meta: {
+    //         requiresAuth: true,
+    //         adminView: true,
 
-        }
-    },
+    //     }
+    // },
     {
         path: "/admin/portal",
         component: Portal,

@@ -59,11 +59,7 @@
 
       <br />
 
-      <div v-if="inputErrors.length">
-        <div v-for="error in inputErrors" :key="error">
-          <span> * {{ error }} </span><br />
-        </div>
-      </div>
+      <FormErrors :inputErrors="inputErrors"> </FormErrors>
     </div>
   </BaseModal>
 </template>

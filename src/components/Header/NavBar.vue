@@ -25,12 +25,12 @@
           title="Home"
           v-if="currentUser"
         ></NavLink>
-        <NavLink
+        <!-- <NavLink
           to="users"
           icon="bi bi-people"
           title="Usuarios"
           v-if="currentUser && adminUser"
-        ></NavLink>
+        ></NavLink> -->
         <NavLink
           to="courses"
           icon="bi bi-book"

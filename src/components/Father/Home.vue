@@ -33,6 +33,7 @@ import AccordionTab from "primevue/accordiontab";
           <CourseCard v-else :courses="in_progress_courses"></CourseCard>
         </div>
       </AccordionTab>
+
       <AccordionTab>
         <template #header>
           <h5>Cursos Listos Para Tomar Test</h5>
@@ -50,6 +51,7 @@ import AccordionTab from "primevue/accordiontab";
           <CourseCard v-else :courses="ready_for_test_courses"></CourseCard>
         </div>
       </AccordionTab>
+
       <AccordionTab
         ><template #header>
           <h5>Cursos Finalizados</h5>

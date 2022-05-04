@@ -88,7 +88,7 @@ import AccordionTab from "primevue/accordiontab";
         <div class="card">
           <div class="card-body CEstilo">
             <div class="card-title d-flex">
-              <h3 class="mr-2">{{ course.name }}</h3>
+              <h3 class="mr-2 text-center">{{ course.name }}</h3>
 
               <button
                 class="btn btn-info"
