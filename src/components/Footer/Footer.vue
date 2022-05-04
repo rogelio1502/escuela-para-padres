@@ -23,13 +23,13 @@
       </div>
       <ul class="list-inline">
         <li class="list-inline-item">
-          <a href="http://localhost:3000/">Inicio</a>
+          <router-link to="/">Inicio</router-link>
         </li>
         <li class="list-inline-item" v-if="!currentUser">
-          <a href="http://localhost:3000/register">Registrar Cuenta</a>
+          <router-link to="/register">Registrar Cuenta</router-link>
         </li>
         <li class="list-inline-item" v-if="!currentUser">
-          <a href="http://localhost:3000/login">Iniciar Sesión</a>
+          <router-link to="/login">Iniciar Sesión</router-link>
         </li>
       </ul>
       <p class="copyright">Fundación Niños 360 © 2022</p>

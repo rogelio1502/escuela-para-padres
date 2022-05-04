@@ -16,11 +16,8 @@
 
     <div class="carousel-inner" role="listbox">
       <div class="carousel-item active">
-        <div class="view outer-image-container">
-          <img
-            src="https://i.imgur.com/9h6vtta.png"
-            class="d-block w-100 img-responsive"
-          />
+        <div class="view img-fluid">
+          <img src="https://i.imgur.com/9h6vtta.png" class="d-block w-100" />
         </div>
 
         <div class="carousel-caption">
@@ -32,11 +29,8 @@
       </div>
 
       <div class="carousel-item">
-        <div class="view outer-image-container">
-          <img
-            src="https://i.imgur.com/2fYFOSt.png"
-            class="d-block w-100 img-responsive"
-          />
+        <div class="outer-image-container">
+          <img src="https://i.imgur.com/2fYFOSt.png" class="d-block w-100" />
         </div>
 
         <div class="carousel-caption">
@@ -49,10 +43,7 @@
 
       <div class="carousel-item">
         <div class="view outer-image-container">
-          <img
-            src="https://i.imgur.com/fIGXc50.png"
-            class="d-block w-100 img-responsive"
-          />
+          <img src="https://i.imgur.com/fIGXc50.png" class="d-block w-100" />
         </div>
 
         <div class="carousel-caption">
@@ -86,10 +77,11 @@
     </a>
   </div>
 
-  <div class="container mt-5">
+  <div class="container mt-3">
     <div class="row">
       <div class="col-md-12">
         <h2>Escuela Para Padres, donde aprenderás a ser el padre más padre</h2>
+        <br />
         <p class="text-justify">
           Fundación Niños 360 ofrece cursos gratuitos con contenido multimedia
           para que cualquier persona pueda aprender de una manera sencilla y
@@ -122,7 +114,7 @@
 
     <br />
   </div>
-  <section class="pt-5 pb-5">
+  <!-- <section class="pt-5 pb-5">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -287,7 +279,7 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <div class="LogoNombre text-center">
     <img src="https://i.imgur.com/6cUAZb4.png" alt="Logo Fundacion" />
@@ -301,29 +293,8 @@
   font-family: "Poppins", sans-serif;
 }
 
-.card {
+/* /* .card {
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-}
-
-.outer-image-container {
-  max-width: 100%;
-  max-height: 380px;
-}
-
-.item img {
-  position: absolute;
-  object-fit: cover;
-  top: 0;
-  left: 0;
-  min-height: 500px;
-}
-/*
-body{
-  background-image: url("https://i.imgur.com/9SuMVET.jpg");
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
 } */
 
 p {
@@ -331,6 +302,15 @@ p {
   font-size: 20px;
   font-weight: normal;
   line-height: 32px;
+}
+.carousel-item {
+  height: 60vh;
+  min-height: 350px;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 </style>
 
