@@ -52,9 +52,7 @@ class UserService {
         return api.patch("/user/course/set-progress/" + course_id + "/" + email,{"user_email" : email} )
     }
 
-    activateCount(email, code){
-        return api.post("/activate/" + email + "/" + code)
-    }
+    
 
 
 

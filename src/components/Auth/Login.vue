@@ -29,8 +29,11 @@
     </form>
 
     <div class="text-center fs-6">
-      <a href="#" @click="resetPassword">¿Olvidaste tu contraseña?</a> o
-      <router-link to="/register"> Únete</router-link>
+      <a href="#" @click="resetPassword" id="forgot_password"
+        >¿Olvidaste tu contraseña?</a
+      >
+      o
+      <router-link id="join_us" to="/register"> Únete</router-link>
     </div>
   </div>
 </template>
@@ -62,11 +65,11 @@ export default {
   // },
   methods: {
     async resetPassword() {
-      Swal.fire({
-        title: "INFO",
-        text: "¡En mantenimiento!, estamos trabajando en esta nueva funcionalidad por ahora, ¡intentalo más tarde.!",
-      });
-      return;
+      // Swal.fire({
+      //   title: "INFO",
+      //   text: "¡En mantenimiento!, estamos trabajando en esta nueva funcionalidad por ahora, ¡intentalo más tarde.!",
+      // });
+      // return;
       await Swal.fire({
         title: "Ingresa tu correo para restaurar la contraseña",
         input: "email",
@@ -265,5 +268,11 @@ body {
     margin: 30px 20px;
     padding: 40px 15px 15px 15px;
   }
+}
+
+#forgot_password,
+#join_us {
+  font-size: 1rem;
+  color: blue;
 }
 </style>
