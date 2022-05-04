@@ -26,7 +26,7 @@
         <div class="carousel-caption">
           <div class="animated fadeInDown">
             <h3>¡Es Gratis!</h3>
-            <p>Nunca es tarde para aprender</p>
+            <p class="text-carousel">Nunca es tarde para aprender</p>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
         <div class="carousel-caption">
           <div class="animated fadeInDown">
             <h3>Anímate</h3>
-            <p>Cualquier persona se puede registrar</p>
+            <p class="text-carousel">Cualquier persona se puede registrar</p>
           </div>
         </div>
       </div>
@@ -58,7 +58,7 @@
         <div class="carousel-caption">
           <div class="animated fadeInDown">
             <h3>Contenido Constante</h3>
-            <p>
+            <p class="text-carousel">
               Aprender nunca está de más, espera las próximas actualizaciones
             </p>
           </div>
@@ -314,6 +314,49 @@
   top: 0;
   left: 0;
   min-height: 500px;
+}
+
+.outer-image-container img {
+  max-width: 100%;
+  filter: brightness(0.8);
+}
+/*
+body{
+  background-image: url("https://i.imgur.com/9SuMVET.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+} */
+p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 32px;
+}
+.text-carousel {
+  color: white;
+}
+
+@media (max-width: 550px) {
+  .text-carousel {
+    display: none;
+  }
+  .outer-image-container img {
+    height: 200px;
+  }
+}
+
+@media (max-width: 700px) {
+  .outer-image-container img {
+    height: 300px;
+  }
+}
+
+@media (max-width: 850px) {
+  .outer-image-container img {
+    height: 300px;
+  }
 }
 </style>
 
