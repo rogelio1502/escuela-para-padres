@@ -1,43 +1,33 @@
 <template>
   <div class="wrapper">
     <div class="logo"><img src="https://i.imgur.com/Yu1LrTp.png" alt="" /></div>
-    <div class="text-center mt-4 name">Escuela para Padres</div>
-    <Form @submit="handleLogin" :validation-schema="schema">
+    <div class="text-center mt-4 name">Escuela Para Padres</div>
+    <form @submit.prevent="handleLogin">
       <div class="p-3 mt-3">
         <div class="form-field d-flex align-items-center">
-          <span class="far fa-user"></span>
-          <Field
-            name="email"
-            type="email"
-            placeholder="Usuario"
-            autocomplete="off"
-          />
-          <ErrorMessage name="email" class="error-feedback" />
+          <span></span>
+          <input type="email" placeholder="Email" v-model="email" />
         </div>
+        <div class="error-feedback"></div>
         <div class="form-field d-flex align-items-center">
-          <span class="fas fa-key"></span>
-          <Field
-            type="password"
-            name="password"
-            id="pwd"
-            placeholder="Contraseña"
-            autocomplete="off"
-          />
-          <ErrorMessage name="password" class="error-feedback" />
+          <span></span>
+          <input type="password" placeholder="Contraseña" v-model="password" />
         </div>
-
+        <div class="error-feedback"></div>
         <button class="btn mt-3" :disabled="loading">
           <span v-show="loading" class="spinner-border spinner-border-sm"></span
           >Iniciar Sesión
         </button>
       </div>
+      <FormErrors :inputErrors="inputErrors"></FormErrors>
 
       <div class="form-group">
         <div v-if="message" class="alert alert-danger" role="alert">
           {{ message }}
         </div>
       </div>
-    </Form>
+    </form>
+
     <div class="text-center fs-6">
       <a href="#">¿Olvidaste tu contraseña?</a> o
       <router-link to="/register"> Únete</router-link>
@@ -45,24 +35,17 @@
   </div>
 </template>
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
-import * as yup from "yup";
+import FormErrors from "../dialogs/FormErrors.vue";
 export default {
   name: "Login",
-  components: {
-    Form,
-    Field,
-    ErrorMessage,
-  },
+
   data() {
-    const schema = yup.object().shape({
-      email: yup.string().email().required("Email es requerido."),
-      password: yup.string().required("Password es requerido."),
-    });
     return {
       loading: false,
       message: "",
-      schema,
+      email: "",
+      password: "",
+      inputErrors: [],
     };
   },
   computed: {
@@ -76,31 +59,70 @@ export default {
   //   }
   // },
   methods: {
-    handleLogin(user) {
+    validations() {
+      this.inputErrors = [];
+      if (this.email.length < 1) {
+        this.inputErrors.push("Email es requerido.");
+      }
+      if (this.password.length < 1) {
+        this.inputErrors.push("La contraseña es requerida.");
+      }
+      if (this.password.length < 7 && this.password.length > 1) {
+        this.inputErrors.push("La contraseña es de al menos 7 caracteres.");
+      }
+      if (
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) ==
+          false &&
+        this.email.length > 1
+      ) {
+        this.inputErrors.push("Email inválido.");
+      }
+      if (this.inputErrors.length) {
+        return true;
+      }
+      return false;
+    },
+    handleLogin() {
+      if (this.validations()) {
+        return;
+      }
       this.loading = true;
-      this.$store.dispatch("auth/login", user).then(
-        () => {
-          this.$router.push("/home");
-        },
-        (error) => {
-          this.loading = false;
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          if (this.message.includes("401")) {
-            this.message = "Credenciales Inválidas.";
+      this.$store
+        .dispatch("auth/login", { email: this.email, password: this.password })
+        .then(
+          () => {
+            this.$router.push("/home");
+          },
+          (error) => {
+            this.loading = false;
+            this.message =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+              error.message ||
+              error.toString();
+            if (this.message.includes("401")) {
+              this.message = "Credenciales Inválidas.";
+            }
+            if (this.message.includes("400")) {
+              this.message = "Usuario inhabilitado.";
+            }
+            if (this.message.includes("500")) {
+              this.message = "Error del servidor. Favor de intentar más tarde.";
+            }
           }
-          if (this.message.includes("400")) {
-            this.message = "Usuario inhabilitado.";
-          }
-          if (this.message.includes("500")) {
-            this.message = "Error del servidor. Favor de intentar más tarde.";
-          }
-        }
-      );
+        );
+    },
+    print() {
+      console.log("Hola mundo");
+    },
+  },
+  watch: {
+    email() {
+      this.email = this.email.replace(" ", "");
+    },
+    password() {
+      this.password = this.password.replace(" ", "");
     },
   },
 };
@@ -120,7 +142,7 @@ body {
 }
 
 .wrapper {
-  max-width: 350px;
+  max-width: 400px;
   min-height: 500px;
   margin: 80px auto;
   padding: 40px 30px 30px 30px;

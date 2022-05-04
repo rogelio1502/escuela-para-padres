@@ -17,26 +17,27 @@
     </div>
 
     <div class="text-center mt-4 mb-4 name">Administrador</div>
-    <Form @submit="handleLogin" :validation-schema="schema">
+
+    <form @submit.prevent="handleLogin">
       <div class="form-group">
-        <Field
-          name="email"
+        <span></span>
+        <input
           type="email"
+          placeholder="Email"
+          v-model="email"
           class="form-control"
-          placeholder="Correo"
         />
-        <ErrorMessage name="email" class="error-feedback" />
-      </div>
-      <div class="form-group">
-        <Field
-          name="password"
-          type="password"
-          class="form-control"
-          placeholder="Contraseña"
-        />
-        <ErrorMessage name="password" class="error-feedback" />
       </div>
 
+      <div class="form-group">
+        <span></span>
+        <input
+          type="password"
+          placeholder="Contraseña"
+          v-model="password"
+          class="form-control"
+        />
+      </div>
       <div class="form-group">
         <button class="btn btn-primary btn-block" :disabled="loading">
           <span
@@ -46,34 +47,27 @@
           <span>Entrar</span>
         </button>
       </div>
+      <FormErrors :inputErrors="inputErrors"></FormErrors>
 
       <div class="form-group">
         <div v-if="message" class="alert alert-danger" role="alert">
           {{ message }}
         </div>
       </div>
-    </Form>
+    </form>
   </div>
 </template>
 <script>
-import { Form, Field, ErrorMessage } from "vee-validate";
-import * as yup from "yup";
 export default {
   name: "Login",
-  components: {
-    Form,
-    Field,
-    ErrorMessage,
-  },
+
   data() {
-    const schema = yup.object().shape({
-      email: yup.string().email().required("Email es requerido."),
-      password: yup.string().required("Password es requerida."),
-    });
     return {
+      inputErrors: [],
       loading: false,
       message: "",
-      schema,
+      email: "",
+      password: "",
     };
   },
   computed: {
@@ -82,33 +76,72 @@ export default {
     },
   },
   methods: {
-    handleLogin(user) {
+    validations() {
+      this.inputErrors = [];
+      if (this.email.length < 1) {
+        this.inputErrors.push("Email es requerido.");
+      }
+      if (this.password.length < 1) {
+        this.inputErrors.push("La contraseña es requerida.");
+      }
+      if (this.password.length < 7 && this.password.length > 1) {
+        this.inputErrors.push("La contraseña es de al menos 7 caracteres.");
+      }
+      if (
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) ==
+          false &&
+        this.email.length > 1
+      ) {
+        this.inputErrors.push("Email inválido.");
+      }
+      if (this.inputErrors.length) {
+        return true;
+      }
+      return false;
+    },
+    handleLogin() {
+      if (this.validations()) {
+        return;
+      }
       this.loading = true;
-      this.$store.dispatch("auth/adminlogin", user).then(
-        () => {
-          this.$router.push("/home");
-        },
-        (error) => {
-          this.loading = false;
-          this.message =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message &&
-              error.response.data.detail) ||
-            error.message ||
-            error.toString();
-          console.log(this.message, "1");
-          if (this.message.includes("401")) {
-            this.message = "Credenciales Inválidas.";
+      this.$store
+        .dispatch("auth/adminlogin", {
+          email: this.email,
+          password: this.password,
+        })
+        .then(
+          () => {
+            this.$router.push("/home");
+          },
+          (error) => {
+            this.loading = false;
+            this.message =
+              (error.response &&
+                error.response.data &&
+                error.response.data.message &&
+                error.response.data.detail) ||
+              error.message ||
+              error.toString();
+            console.log(this.message, "1");
+            if (this.message.includes("401")) {
+              this.message = "Credenciales Inválidas.";
+            }
+            if (this.message.includes("Inhabilitado")) {
+              this.message = "Usuario inhabilitado.";
+            }
+            if (this.message.includes("500")) {
+              this.message = "Error del servidor. Favor de intentar más tarde.";
+            }
           }
-          if (this.message.includes("Inhabilitado")) {
-            this.message = "Usuario inhabilitado.";
-          }
-          if (this.message.includes("500")) {
-            this.message = "Error del servidor. Favor de intentar más tarde.";
-          }
-        }
-      );
+        );
+    },
+  },
+  watch: {
+    email() {
+      this.email = this.email.replace(" ", "");
+    },
+    password() {
+      this.password = this.password.replace(" ", "");
     },
   },
 };

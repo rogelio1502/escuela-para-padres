@@ -42,7 +42,7 @@
         <NavLink
           to="register"
           icon="bi bi-person-plus"
-          title="Registrate"
+          title="Regístrate"
         ></NavLink>
 
         <NavLink

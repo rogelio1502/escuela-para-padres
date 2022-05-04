@@ -89,7 +89,7 @@
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-12">
-        <h2>Escuela para Padres, donde aprenderás a ser el padre más padre</h2>
+        <h2>Escuela Para Padres, donde aprenderás a ser el padre más padre</h2>
         <p class="text-justify">
           Fundación Niños 360 ofrece cursos gratuitos con contenido multimedia
           para que cualquier persona pueda aprender de una manera sencilla y

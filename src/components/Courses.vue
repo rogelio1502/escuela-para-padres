@@ -27,6 +27,8 @@ import DataView from "primevue/dataview";
         <header class="d-flex">
           <h1 class="mr-5"><i class="tamano bi bi-book"> </i> Cursos</h1>
           <button
+            v-if="adminUser"
+            id="x"
             class="btn btn-success tb"
             data-toggle="modal"
             data-target="#addCourseModal"
