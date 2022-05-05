@@ -23,9 +23,11 @@ import YouTube from "vue3-youtube";
             fs="0"
           />
           <div class="card-body">
-            <div class="card-text" v-if="section.summary">
-              {{ section.summary.toUpperCase() }}
-            </div>
+            <div
+              class="card-text"
+              v-if="section.summary"
+              v-html="section.summary.toUpperCase()"
+            ></div>
           </div>
           <div class="card-footer">
             <div class="d-flex justify-content-between">
