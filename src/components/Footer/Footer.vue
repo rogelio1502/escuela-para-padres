@@ -23,7 +23,7 @@
       </div>
       <ul class="list-inline">
         <li class="list-inline-item">
-          <router-link to="/">Inicio</router-link>
+          <router-link to="/home">Home</router-link>
         </li>
         <li class="list-inline-item" v-if="!currentUser">
           <router-link to="/register">Registrar Cuenta</router-link>

@@ -46,7 +46,7 @@ export default {
           showConfirmButton: "OK",
         }).then((response) => {
           if (response.isConfirmed) {
-            this.$router.push("/");
+            this.$router.push("/login");
           }
         });
       });

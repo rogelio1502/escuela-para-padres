@@ -121,7 +121,7 @@ export default {
           switch (err.response.status) {
             case 404:
               if (err.response.data.detail !== undefined) {
-                this.$router.push("/");
+                this.$router.push("/login");
               }
 
               break;

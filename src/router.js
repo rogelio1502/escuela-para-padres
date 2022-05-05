@@ -2,7 +2,7 @@ import {createWebHistory, createRouter} from "vue-router";
 import Home from "./components/Father/Home.vue";
 import Login from "./components/Auth/Login.vue";
 import Register from "./components/Auth/Register.vue";
-import Index from "./components/Index.vue";
+// import Index from "./components/Index.vue";
 // import Users from "./components/Admin/Users.vue";
 import Courses from "./components/Courses.vue";
 import CourseDetail from "./components/CourseDetail.vue";
@@ -19,14 +19,14 @@ import Activate from './components/Activate.vue'
 // const BoardUser = () => import ("./components/BoardUser.vue")
 
 const routes = [
-    {
-        path: "/",
-        name: "index",
-        component: Index,
-        meta: {
-            requiresAuth: false,
-        }
-    },
+    // {
+    //     path: "/",
+    //     name: "index",
+    //     component: Index,
+    //     meta: {
+    //         requiresAuth: false,
+    //     }
+    // },
     {
         path: "/home",
         name: "home",
@@ -138,7 +138,7 @@ router.beforeEach((to, from, next) => {
 
     }
     if(to.meta.requiresAuth === undefined){
-        next("/");
+        next("/login");
         return
     }
     if(to.meta.requiresAuth && ! loggedIn){
@@ -148,11 +148,11 @@ router.beforeEach((to, from, next) => {
     }
     
     if(['/login','/register','/admin/login','/activate'].includes(to.path) && loggedIn){
-        next("/")
+        next("/home")
         return
     }
     if(to.meta.adminView === true && role != "admin"){
-        next("/")
+        next("/home")
         return
     }
     next()
