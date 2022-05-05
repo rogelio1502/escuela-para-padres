@@ -19,7 +19,7 @@
         required
       />
       <label for="course_desc"> Descripción </label>
-      <textarea
+      <!-- <textarea
         v-model="course_desc"
         name="course_desc"
         id="course_desc_ipt"
@@ -27,7 +27,8 @@
         style="resize: none"
         required
       >
-      </textarea>
+      </textarea> -->
+      <Editor :editorToolbar="customToolbar" v-model="course_desc" />
 
       <input
         style="display: none"
@@ -64,6 +65,7 @@ import $ from "jquery";
 import api from "../../../services/api";
 import CourseService from "../../../services/course.service";
 import Swal from "sweetalert2";
+
 export default {
   emits: ["making_action"],
   props: {
@@ -72,6 +74,7 @@ export default {
   },
   data() {
     return {
+      customToolbar: [["bold", "italic", "underline"], [], []],
       title: "Editar curso",
       cancel_save: true,
       info: false,
@@ -134,9 +137,7 @@ export default {
           "Longitud de Descripción del curso debe ser menor a 255"
         );
       }
-      if (this.file === null) {
-        this.inputErrors.push("La imagen de portada es requerida.");
-      }
+
       if (this.inputErrors.length) {
         return false;
       }

@@ -105,9 +105,7 @@ import DataView from "primevue/dataview";
                 </h3>
               </div>
               <div class="card-text mt-2">
-                <div>
-                  {{ slotProps.data.description }}
-                </div>
+                <div v-html="slotProps.data.description"></div>
               </div>
             </div>
             <div class="card-footer">
@@ -154,8 +152,10 @@ export default {
     Slide,
     Navigation,
   },
+
   data() {
     return {
+      course_desc: "",
       courses: [],
       errors: [],
       loaded: false,

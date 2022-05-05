@@ -20,7 +20,7 @@
       />
 
       <label for="section_desc"> Descripción de la sección </label>
-      <textarea
+      <!-- <textarea
         v-model="desc"
         name="section_desc"
         id="section_desc_ipt"
@@ -28,7 +28,8 @@
         style="resize: none"
         required
       >
-      </textarea>
+      </textarea> -->
+      <Editor :editorToolbar="customToolbar" v-model="desc" />
 
       <label for="section_video"> Url del video </label>
 
@@ -60,6 +61,8 @@ export default {
   },
   data() {
     return {
+      customToolbar: [["bold", "italic", "underline"], [], []],
+
       title: "Editar sección",
       cancel_save: true,
       info: false,
@@ -95,28 +98,28 @@ export default {
     validations() {
       this.inputErrors = [];
 
-      if (this.section_name.length < 1) {
+      if (this.name.length < 1) {
         this.inputErrors.push(
           "Longitud del nombre de la sección debe ser mayor a 0"
         );
       }
-      if (this.section_name.length > 45) {
+      if (this.name.length > 45) {
         this.inputErrors.push(
           "Longitud del nombre de la sección debe ser menor a 45"
         );
       }
-      if (this.section_desc.length < 10) {
+      if (this.desc.length < 10) {
         this.inputErrors.push("Descripción debe tener al menos 10 caracteres.");
       }
-      if (this.section_desc.length > 255) {
+      if (this.desc.length > 255) {
         this.inputErrors.push("Descripción debe tener máximo 255 caracteres.");
       }
-      if (this.section_video.length < 1) {
+      if (this.video.length < 1) {
         this.inputErrors.push(
           "La url del video debe ser mayor a 0 caracteres."
         );
       }
-      if (this.section_video.length > 255) {
+      if (this.video.length > 255) {
         this.inputErrors.push(
           "La url del video debe ser menor a 255 caracteres."
         );
@@ -166,22 +169,22 @@ export default {
       this.getSection();
     },
     section_name() {
-      if (this.section_name == " ") {
-        this.section_name = "";
+      if (this.name == " ") {
+        this.name = "";
       }
-      this.section_name = this.section_name.replace("  ", " ");
+      this.name = this.name.replace("  ", " ");
     },
     section_desc() {
-      if (this.section_desc == " ") {
-        this.section_desc = "";
+      if (this.desc == " ") {
+        this.desc = "";
       }
-      this.section_desc = this.section_desc.replace("  ", " ");
+      this.desc = this.desc.replace("  ", " ");
     },
     section_video() {
-      if (this.section_video == " ") {
-        this.section_video = "";
+      if (this.video == " ") {
+        this.video = "";
       }
-      this.section_video = this.section_video.replace(" ", "");
+      this.video = this.video.replace(" ", "");
     },
   },
 };

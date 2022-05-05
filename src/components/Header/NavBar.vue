@@ -1,10 +1,10 @@
 <template>
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark">
-      <a href="/">
+      <a href="/home">
         <img src="https://i.imgur.com/jDUatIo.png" height="25" width="30" />
       </a>
-      <a href="/" class="navbar-brand" style="color: white"
+      <a href="/home" class="navbar-brand" style="color: white"
         >Escuela Para Padres</a
       >
       <button

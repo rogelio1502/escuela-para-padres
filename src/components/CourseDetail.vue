@@ -112,9 +112,7 @@ import AccordionTab from "primevue/accordiontab";
             <div class="text-center">
               <img :src="course.cover" alt="" />
             </div>
-            <div class="mt-2 mb-2 p-2">
-              <p>{{ course.description }}</p>
-            </div>
+            <div v-html="course.description" class="mt-2 mb-2 p-2"></div>
             <div class="card-title">
               <h3 style="display: inline">Secciones</h3>
             </div>
@@ -193,9 +191,7 @@ import AccordionTab from "primevue/accordiontab";
 
                       <br />
                       <br />
-                      <p>
-                        {{ section.summary }}
-                      </p>
+                      <div v-html="section.summary"></div>
                       <br />
                       <div class="d-flex">
                         <div title="Eliminar Sección">

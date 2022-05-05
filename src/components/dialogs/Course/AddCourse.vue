@@ -20,7 +20,7 @@
         required
       />
       <label for="course_desc"> Descripción </label>
-      <textarea
+      <!-- <textarea
         v-model="course_desc"
         name="course_desc"
         id="course_desc_ipt"
@@ -28,7 +28,8 @@
         style="resize: none"
         required
       >
-      </textarea>
+      </textarea> -->
+      <Editor :editorToolbar="customToolbar" v-model="course_desc" />
 
       <input
         style="display: none"
@@ -66,8 +67,10 @@ export default {
   props: {
     reload: Function,
   },
+
   data() {
     return {
+      customToolbar: [["bold", "italic", "underline"], [], []],
       title: "Añadir curso",
       cancel_save: true,
       info: false,
@@ -89,9 +92,9 @@ export default {
     },
     validations() {
       this.inputErrors = [];
-      if (this.course_name.length < 1) {
+      if (this.course_name.length < 5) {
         this.inputErrors.push(
-          "Longitud de Nombre del curso debe ser mayor a 0"
+          "Longitud de Nombre del curso debe ser mayor a 5"
         );
       }
       if (this.course_name.length > 45) {
@@ -182,6 +185,7 @@ export default {
       this.course_name = this.course_name.replace("  ", " ");
     },
     course_desc() {
+      console.log(this.course_desc);
       if (this.course_desc == " ") {
         this.course_desc = "";
       }

@@ -21,7 +21,7 @@
       />
 
       <label for="section_desc"> Descripción de la sección </label>
-      <textarea
+      <!-- <textarea
         v-model="section_desc"
         name="section_desc"
         id="section_desc_ipt"
@@ -29,7 +29,8 @@
         style="resize: none"
         required
       >
-      </textarea>
+      </textarea> -->
+      <Editor :editorToolbar="customToolbar" v-model="section_desc" />
 
       <label for="section_video"> Url del video </label>
 
@@ -61,6 +62,8 @@ export default {
   },
   data() {
     return {
+      customToolbar: [["bold", "italic", "underline"], [], []],
+
       title: "Añadir sección",
       cancel_save: true,
       info: false,
