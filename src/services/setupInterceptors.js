@@ -55,6 +55,8 @@ const setup = (store) => {
                 icon: "warning",
                 confirmButtonText: "Ok",
                 allowOutsideClick: false,
+                allowEscapeKey: false,
+                allowEnterKey: false,
               }).then((response) => {
                 location.reload();
               });
