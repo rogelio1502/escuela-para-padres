@@ -387,9 +387,22 @@ export default {
       return userService.getStatus(this.currentUserEmail, this.currentRoute);
     },
     getCertificate() {
-      Swal.fire({
-        title: "INFO",
-        text: "¡En mantenimiento!, estamos trabajando en esta nueva funcionalidad por ahora, ¡intentalo más tarde!",
+      userService.getPersonalData(this.currentUserEmail).then((response) => {
+        if (
+          response.data.names != null &&
+          response.data.last_name != null &&
+          response.data.second_last_name != null
+        ) {
+          Swal.fire({
+            title: "INFO",
+            text: "¡En mantenimiento!, estamos trabajando en esta nueva funcionalidad por ahora, ¡intentalo más tarde!",
+          });
+        } else {
+          Swal.fire({
+            title: "INFO",
+            text: "Tus datos personales están incompletos, ve a la sección de Mi Perfil para completarlos.",
+          });
+        }
       });
     },
   },

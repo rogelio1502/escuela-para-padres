@@ -23,6 +23,7 @@
                         type="email"
                         class="form-control"
                         v-model="email"
+                        required
                       />
                     </div>
                     <div class="form-group mb-5">
@@ -32,6 +33,7 @@
                         type="password"
                         class="form-control"
                         v-model="password"
+                        required
                       />
                     </div>
                     <!-- <button type="submit" class="btn btn-theme">Registrarse</button> -->

@@ -26,6 +26,7 @@
           placeholder="Email"
           v-model="email"
           class="form-control"
+          required
         />
       </div>
 
@@ -36,6 +37,7 @@
           placeholder="Contraseña"
           v-model="password"
           class="form-control"
+          required
         />
       </div>
       <div class="form-group">

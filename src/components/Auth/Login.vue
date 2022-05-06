@@ -6,12 +6,17 @@
       <div class="p-3 mt-3">
         <div class="form-field d-flex align-items-center">
           <span></span>
-          <input type="email" placeholder="Email" v-model="email" />
+          <input type="email" placeholder="Email" v-model="email" required />
         </div>
         <div class="error-feedback"></div>
         <div class="form-field d-flex align-items-center">
           <span></span>
-          <input type="password" placeholder="Contraseña" v-model="password" />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            v-model="password"
+            required
+          />
         </div>
         <div class="error-feedback"></div>
         <button class="btn mt-3" :disabled="loading">
