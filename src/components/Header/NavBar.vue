@@ -63,8 +63,11 @@
           <NavLink
             to="perfil"
             icon="bi bi-person-circle"
-            :title="currentUser.email"
+            :title="'Mi Perfil'"
           ></NavLink>
+          <li class="nav-item">
+            <a class="nav-link">{{ currentUser.email }}</a>
+          </li>
 
           <li class="nav-item" id="logout">
             <router-link
