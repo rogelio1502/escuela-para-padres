@@ -1,7 +1,3 @@
-<script setup>
-import userService from "../services/user.service";
-import ResetPassword from "./dialogs/User/ResetPassword.vue";
-</script>
 <template>
   <div class="container-md mb-5">
     <Loading v-if="some_action" />
@@ -136,6 +132,9 @@ import ResetPassword from "./dialogs/User/ResetPassword.vue";
 </template>
 
 <script>
+import userService from "../services/user.service";
+import ResetPassword from "./dialogs/User/ResetPassword.vue";
+
 import Swal from "sweetalert2";
 export default {
   components: {
@@ -160,17 +159,20 @@ export default {
     },
     validations() {
       this.inputErrors = [];
-      if (this.names < 1 || this.names > 45) {
+      if (this.names.length < 1 || this.names.length > 45) {
         this.inputErrors.push(
           "Longitud del apartado Nombre(s) es inválida. (mínimo 1, máximo 45)"
         );
       }
-      if (this.last_name < 1 || this.last_name > 45) {
+      if (this.last_name.length < 1 || this.last_name.length > 45) {
         this.inputErrors.push(
           "Longitud del apartado Apellido Paterno es inválida. (mínimo 1, máximo 30)"
         );
       }
-      if (this.second_last_name < 1 || this.second_last_name > 45) {
+      if (
+        this.second_last_name.length < 1 ||
+        this.second_last_name.length > 45
+      ) {
         this.inputErrors.push(
           "Longitud del apartado Apellido Materno es inválida. (mínimo 1, máximo 30)"
         );
@@ -222,7 +224,6 @@ export default {
           this.second_last_name
         )
         .then((response) => {
-          console.log(response);
           this.getPersonalData();
           this.edit_personal_data = false;
           Swal.fire({
