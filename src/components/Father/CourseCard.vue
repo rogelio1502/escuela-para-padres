@@ -15,7 +15,7 @@
                 params: { id: course.Courses.id },
               }).href
             "
-            v-if="course.Courses.enabled || adminUser"
+            v-if="course.Courses.enabled || adminSudo"
           >
             Ir al curso
           </a>
@@ -49,9 +49,19 @@ export default {
     courses: Array,
   },
   computed: {
-    adminUser() {
+    adminSudo() {
       try {
-        return true ? this.$store.state.auth.user.role === "admin" : false;
+        return true
+          ? this.$store.state.auth.user.role === "admin" ||
+              this.$store.state.auth.user.role === "su"
+          : false;
+      } catch {
+        return false;
+      }
+    },
+    sudo() {
+      try {
+        return true ? this.$store.state.auth.user.role === "su" : false;
       } catch {
         return false;
       }

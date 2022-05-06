@@ -98,9 +98,19 @@ export default {
     },
   },
   computed: {
-    adminUser() {
+    adminSudo() {
       try {
-        return true ? this.$store.state.auth.user.role === "admin" : false;
+        return true
+          ? this.$store.state.auth.user.role === "admin" ||
+              this.$store.state.auth.user.role === "su"
+          : false;
+      } catch {
+        return false;
+      }
+    },
+    sudo() {
+      try {
+        return true ? this.$store.state.auth.user.role === "su" : false;
       } catch {
         return false;
       }

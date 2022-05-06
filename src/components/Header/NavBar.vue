@@ -30,7 +30,7 @@
           to="users"
           icon="bi bi-people"
           title="Usuarios"
-          v-if="currentUser && adminUser"
+          v-if="currentUser && adminSudo"
         ></NavLink> -->
           <NavLink
             to="courses"
@@ -54,10 +54,10 @@
         </div>
         <div v-if="currentUser" class="navbar-nav ml-auto">
           <NavLink
-            v-if="currentUser && adminUser"
+            v-if="currentUser && adminSudo"
             to="portal_admin"
             icon="bi bi-binoculars"
-            title="Admin"
+            title="Portal"
           ></NavLink>
 
           <NavLink
@@ -90,8 +90,11 @@ export default {
     currentUser() {
       return this.$store.state.auth.user;
     },
-    adminUser() {
-      return true ? this.$store.state.auth.user.role === "admin" : false;
+    adminSudo() {
+      return true
+        ? this.$store.state.auth.user.role === "admin" ||
+            this.$store.state.auth.user.role === "su"
+        : false;
     },
     role() {
       return this.$store.state.auth.user.role;

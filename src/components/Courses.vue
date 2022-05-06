@@ -27,7 +27,7 @@ import DataView from "primevue/dataview";
         <header class="d-flex">
           <h1 class="mr-5"><i class="tamano bi bi-book"> </i> Cursos</h1>
           <button
-            v-if="adminUser"
+            v-if="adminSudo"
             id="x"
             class="btn btn-success tb"
             data-toggle="modal"
@@ -63,7 +63,7 @@ import DataView from "primevue/dataview";
 
   <!-- Courses Carrousel -->
   <div class="container-md">
-    <!-- <div v-if="adminUser && loaded">
+    <!-- <div v-if="adminSudo && loaded">
       <div class="row">
         <div class="col-md-12">
           
@@ -119,7 +119,7 @@ import DataView from "primevue/dataview";
               </button>
 
               <button
-                v-if="adminUser"
+                v-if="sudo"
                 class="btn btn-danger m-2"
                 data-toggle="modal"
                 data-target="#removeCourseModal"
@@ -216,9 +216,19 @@ export default {
   },
 
   computed: {
-    adminUser() {
+    adminSudo() {
       try {
-        return true ? this.$store.state.auth.user.role === "admin" : false;
+        return true
+          ? this.$store.state.auth.user.role === "admin" ||
+              this.$store.state.auth.user.role === "su"
+          : false;
+      } catch {
+        return false;
+      }
+    },
+    sudo() {
+      try {
+        return true ? this.$store.state.auth.user.role === "su" : false;
       } catch {
         return false;
       }

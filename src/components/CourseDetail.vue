@@ -24,7 +24,7 @@ import AccordionTab from "primevue/accordiontab";
       <!-- <div v-if="!loaded">
         <div class="spinner-border" role="status"></div>
       </div> -->
-      <div class="row" v-if="!enabled && adminUser && loaded">
+      <div class="row" v-if="!enabled && adminSudo && loaded">
         <div class="col-md-12">
           <div class="alert alert-warning text-center" role="alert">
             <b>Este curso se encuentra deshabilitado para usuarios padre.</b>
@@ -34,7 +34,7 @@ import AccordionTab from "primevue/accordiontab";
       <div v-if="errors.length">
         <p>{{ error }}</p>
       </div>
-      <div v-else-if="(course && loaded && enabled) || (adminUser && !enabled)">
+      <div v-else-if="(course && loaded && enabled) || (adminSudo && !enabled)">
         <EditCourse
           @making_action="(d) => (some_action = d)"
           :reload="$router.go"
@@ -66,7 +66,7 @@ import AccordionTab from "primevue/accordiontab";
           </button>
 
           <button
-            v-if="adminUser"
+            v-if="sudo"
             class="btn btn-danger m-2"
             data-toggle="modal"
             data-target="#removeCourseModal"
@@ -75,7 +75,7 @@ import AccordionTab from "primevue/accordiontab";
             <i class="bi bi-eraser-fill"></i> Eliminar Curso
           </button>
           <button
-            v-if="adminUser"
+            v-if="adminSudo"
             class="btn btn-warning m-2"
             data-toggle="modal"
             data-target="#editCourseModal"
@@ -118,7 +118,7 @@ import AccordionTab from "primevue/accordiontab";
             </div>
             <div class="btn-group">
               <button
-                v-if="adminUser"
+                v-if="adminSudo"
                 class="btn btn-warning m-2"
                 data-toggle="modal"
                 data-target="#addSectionModal"
@@ -127,7 +127,7 @@ import AccordionTab from "primevue/accordiontab";
               </button>
 
               <button
-                v-if="adminUser && sections.length"
+                v-if="adminSudo && sections.length"
                 class="btn btn-warning m-2"
                 data-toggle="modal"
                 data-target="#editSectionOrderModal"
@@ -196,7 +196,7 @@ import AccordionTab from "primevue/accordiontab";
                       <div class="d-flex">
                         <div title="Eliminar Sección">
                           <button
-                            v-if="adminUser"
+                            v-if="adminSudo"
                             class="btn btn-danger bi-eraser-fill mr-2"
                             @click="remove_section(section.id, section.name)"
                             data-toggle="modal"
@@ -205,7 +205,7 @@ import AccordionTab from "primevue/accordiontab";
                         </div>
                         <div title="Modificar Sección">
                           <button
-                            v-if="adminUser"
+                            v-if="adminSudo"
                             class="btn btn-primary bi-eraser-fill mr-2"
                             @click="update_section(section.id)"
                             :id="section_id_for_update"
@@ -311,7 +311,7 @@ export default {
             this.some_action = false;
 
             this.isIn = true;
-            if (this.enabled || this.adminUser) {
+            if (this.enabled || this.adminSudo) {
               this.some_action = true;
 
               this.getSections();
@@ -324,7 +324,7 @@ export default {
               this.enabled = this.course.enabled;
               console.log(this.enabled);
               this.isIn = false;
-              if (this.enabled || this.adminUser) {
+              if (this.enabled || this.adminSudo) {
                 this.some_action = true;
 
                 this.getSections();
@@ -494,9 +494,19 @@ export default {
     },
   },
   computed: {
-    adminUser() {
+    adminSudo() {
       try {
-        return true ? this.$store.state.auth.user.role === "admin" : false;
+        return true
+          ? this.$store.state.auth.user.role === "admin" ||
+              this.$store.state.auth.user.role === "su"
+          : false;
+      } catch {
+        return false;
+      }
+    },
+    sudo() {
+      try {
+        return true ? this.$store.state.auth.user.role === "su" : false;
       } catch {
         return false;
       }

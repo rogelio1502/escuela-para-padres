@@ -192,6 +192,13 @@ export default {
         return null;
       }
     },
+    sudo() {
+      try {
+        return true ? this.$store.state.auth.user.role === "su" : false;
+      } catch {
+        return false;
+      }
+    },
   },
 };
 </script>
@@ -497,7 +504,7 @@ export default {
                   </div>
                 </template></Column
               >
-              <Column header="Acciones">
+              <Column header="Acciones" v-if="sudo">
                 <template #body="slotProps">
                   <div
                     v-if="
