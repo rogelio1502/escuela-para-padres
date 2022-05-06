@@ -125,7 +125,6 @@ import DataView from "primevue/dataview";
                 data-target="#removeCourseModal"
                 @click="remove_course(slotProps.data.name, slotProps.data.id)"
               >
-                {{ slotProps.data.name }}
                 <i class="bi bi-eraser-fill"></i>
               </button>
             </div>
