@@ -106,7 +106,7 @@ import AccordionTab from "primevue/accordiontab";
                 @click="getCertificate"
               >
                 <i class="bi bi-check-circle-fill"></i>
-                Obtener Certificado
+                Obtener reconocimiento
               </button>
             </div>
             <div class="text-center">
@@ -482,7 +482,7 @@ export default {
               Swal.fire({
                 icon: "success",
                 title: "¡Has finalizado el curso!",
-                text: "Ya puedes descargar el certificado.",
+                text: "Ya puedes descargar tu reconocimiento.",
                 showConfirmButton: "Ok",
               });
             }
