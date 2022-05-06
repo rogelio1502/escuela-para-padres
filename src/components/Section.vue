@@ -76,8 +76,8 @@ export default {
   },
   methods: {
     onStateChange(e) {
-      console.log(e.target.getCurrentTime(), "now");
-      console.log(e.target.getDuration());
+      //console.log(e.target.getCurrentTime(), "now");
+      //console.log(e.target.getDuration());
 
       if (
         e.target.getCurrentTime() >= e.target.getDuration() - 5 &&
@@ -95,7 +95,7 @@ export default {
                 confirmButtonText: "Ok",
                 allowOutsideClick: false,
               }).then((response) => {
-                console.log(response);
+                //console.log(response);
                 this.$router.push("/courses/detail/" + this.section.course_id);
               });
             })
@@ -107,7 +107,7 @@ export default {
                 confirmButtonText: "Ok",
                 allowOutsideClick: false,
               }).then((response) => {
-                console.log(response);
+                //console.log(response);
               });
             });
         }
@@ -154,7 +154,7 @@ export default {
             this.isViewed = false;
             this.loaded = true;
           }
-          console.log(this.isViewed);
+          //console.log(this.isViewed);
         })
         .catch((err) => {
           console.error("Error al cargar el status del video");

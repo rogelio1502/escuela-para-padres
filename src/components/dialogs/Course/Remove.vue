@@ -32,7 +32,7 @@ import Swal from "sweetalert2";
 export default {
   emits: ["making_action"],
   mounted() {
-    console.log("Fallo");
+    //console.log("Fallo");
   },
   props: {
     reload: Function,
@@ -62,7 +62,7 @@ export default {
             confirmButtonText: "Ok",
             allowOutsideClick: false,
           }).then((response) => {
-            console.log(response);
+            //console.log(response);
             if (this.redirect) {
               this.toCourses();
             } else {
@@ -72,7 +72,7 @@ export default {
         })
         .catch((err) => {
           this.$emit("making_action", false);
-          console.log(err);
+          //console.log(err);
         });
     },
     toCourses() {

@@ -159,7 +159,7 @@ export default {
         );
     },
     print() {
-      console.log("Hola mundo");
+      //console.log("Hola mundo");
     },
   },
   watch: {

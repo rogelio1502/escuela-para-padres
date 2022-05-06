@@ -132,7 +132,7 @@ export default {
               confirmButtonText: "Ok",
               allowOutsideClick: false,
             }).then((response) => {
-              console.log(response);
+              //console.log(response);
               this.$emit("making_action", true);
               this.reload();
               this.$emit("making_action", false);

@@ -122,7 +122,7 @@ export default {
                 error.response.data.detail) ||
               error.message ||
               error.toString();
-            console.log(this.message, "1");
+            //console.log(this.message, "1");
             if (this.message.includes("401")) {
               this.message = "Credenciales Inválidas.";
             }

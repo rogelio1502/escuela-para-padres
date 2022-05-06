@@ -306,7 +306,7 @@ export default {
           if (response.data[0] !== undefined) {
             this.course = response.data[0].Courses;
             this.enabled = this.course.enabled;
-            console.log(this.enabled);
+            //console.log(this.enabled);
 
             this.some_action = false;
 
@@ -319,10 +319,10 @@ export default {
             }
           } else {
             CourseService.getCourse(this.currentRoute).then((response) => {
-              console.log(response);
+              //console.log(response);
               this.course = response.data;
               this.enabled = this.course.enabled;
-              console.log(this.enabled);
+              //console.log(this.enabled);
               this.isIn = false;
               if (this.enabled || this.adminSudo) {
                 this.some_action = true;
@@ -334,7 +334,7 @@ export default {
           }
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
 
           this.some_action = false;
         });
@@ -399,7 +399,7 @@ export default {
   watch: {
     enabled() {},
     isIn() {
-      //console.log(this.isIn);
+      ////console.log(this.isIn);
     },
     course() {
       this.course.name = this.course.name.toUpperCase();
@@ -421,7 +421,7 @@ export default {
     },
     errors() {
       this.error = this.errors[0];
-      console.log(this.error);
+      //console.log(this.error);
       if (this.error.includes("Row Not Found")) {
         this.error = "Course not found";
       }
@@ -465,7 +465,7 @@ export default {
                   });
                 })
                 .catch((err) => {
-                  console.log(err);
+                  //console.log(err);
                 });
             } else if (this.status == "ready for test") {
               this.some_action = false;
@@ -488,7 +488,7 @@ export default {
             }
           })
           .catch((err) => {
-            console.log(err);
+            //console.log(err);
           });
       }
     },

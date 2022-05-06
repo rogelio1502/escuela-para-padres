@@ -91,7 +91,7 @@ export default {
           this.$emit("making_action", false);
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
           this.$emit("making_action", false);
         });
     },
@@ -147,13 +147,13 @@ export default {
             confirmButtonText: "Ok",
             allowOutsideClick: false,
           }).then((response) => {
-            console.log(response);
+            //console.log(response);
             this.reload();
           });
           this.$emit("making_action", false);
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
           this.$emit("making_action", false);
         });
       this.inputErrors = [];

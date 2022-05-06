@@ -35,7 +35,7 @@ export default {
         }
       })
       .catch((err) => {
-        console.log("error al activar", err);
+        //console.log("error al activar", err);
         Swal.fire({
           title: "Ups!",
           text: "¡Hubo un error al activar la cuenta, intenta más tarde!",

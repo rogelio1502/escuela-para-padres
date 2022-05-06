@@ -288,7 +288,7 @@ export default {
           this.fathers_loaded = false;
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
         });
     },
     getAdmins() {
@@ -302,7 +302,7 @@ export default {
           this.admins_loaded = false;
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
         });
     },
     exportFathersCSV() {
@@ -320,11 +320,11 @@ export default {
         showCancelButton: "Cancelar",
       }).then((response) => {
         if (response.isConfirmed) {
-          console.log("Hola" + id);
+          //console.log("Hola" + id);
           adminService
             .setStatus(id)
             .then((response) => {
-              console.log(response);
+              //console.log(response);
               this.getFathers();
               this.getAdmins();
               Swal.fire({
@@ -335,7 +335,7 @@ export default {
               });
             })
             .catch((err) => {
-              console.log(reponse);
+              //console.log(reponse);
               Swal.fire({
                 icon: "error",
                 title: "Ups!",

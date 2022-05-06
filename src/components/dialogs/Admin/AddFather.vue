@@ -122,7 +122,7 @@ export default {
         .catch((err) => {
           let errorMsg = "Ha habido un error al registrar al usuario padre.";
           if (err.response.data.detail) {
-            console.log("Error");
+            //console.log("Error");
             if (err.response.status == 400 || err.response.status == 404) {
               errorMsg = err.response.data.detail;
               if (errorMsg == "Duplicate Entry") {

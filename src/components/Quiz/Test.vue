@@ -58,12 +58,12 @@ export default {
             this.correct_answers = true;
             this.resetQuizClose();
             location.reload();
-            console.log(response);
+            //console.log(response);
             this.$emit("making_action", false);
             this.idx++;
           })
           .catch((err) => {
-            console.log(err);
+            //console.log(err);
             this.$emit("making_action", false);
           });
       } else {
@@ -160,7 +160,7 @@ export default {
               this.testLoaded = true;
             }
           } else {
-            console.log(err);
+            //console.log(err);
           }
         });
     },

@@ -151,14 +151,14 @@ export default {
               confirmButtonText: "Ok",
               allowOutsideClick: false,
             }).then((response) => {
-              console.log(response);
+              //console.log(response);
               this.reload();
             });
 
             this.clear();
           })
           .catch((err) => {
-            console.log(err);
+            //console.log(err);
             this.$emit("making_action", false);
 
             this.clear();
@@ -185,7 +185,7 @@ export default {
       this.course_name = this.course_name.replace("  ", " ");
     },
     course_desc() {
-      console.log(this.course_desc);
+      //console.log(this.course_desc);
       if (this.course_desc == " ") {
         this.course_desc = "";
       }

@@ -33,15 +33,15 @@ export default {
         .getTest(this.currentRoute)
         .then((response) => {
           this.test = response.data;
-          console.log(response.data);
+          //console.log(response.data);
           this.testLoaded = false;
           if (this.test.length) {
             // this.test_id = this.test[0].test_id;
-            console.log(this.test_id);
+            //console.log(this.test_id);
           }
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
           this.testLoaded = false;
         });
     },
@@ -49,16 +49,16 @@ export default {
       adminService
         .getTestId(this.currentRoute)
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           this.setTestId(response.data.id);
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
         });
     },
     setTestId(id) {
       this.test_id = id;
-      console.log(this.test_id);
+      //console.log(this.test_id);
     },
     removeQuestion(id) {
       Swal.fire({
@@ -91,12 +91,12 @@ export default {
                   showConfirmButton: "OK!",
                   text: "Ha habido un error al eliminar la pregunta.",
                 });
-                console.log(err);
+                //console.log(err);
               });
           }
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
         });
     },
   },

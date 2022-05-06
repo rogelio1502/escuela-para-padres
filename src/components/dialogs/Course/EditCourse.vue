@@ -104,7 +104,7 @@ export default {
           //$("#editCourseModal").modal("show");
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
           this.$emit("making_action", false);
         });
     },
@@ -155,7 +155,7 @@ export default {
         const reader = new FileReader();
         reader.onloadend = (e) => {
           const result = e.target.result;
-          console.log(result);
+          //console.log(result);
           let json_data = {
             name: this.course_name,
             description: this.course_desc,
@@ -174,12 +174,12 @@ export default {
                 confirmButtonText: "Ok",
                 allowOutsideClick: false,
               }).then((response) => {
-                console.log(response);
+                //console.log(response);
                 this.reload();
               });
             })
             .catch((err) => {
-              console.log(err);
+              //console.log(err);
               this.$emit("making_action", false);
             });
         };
@@ -201,12 +201,12 @@ export default {
               confirmButtonText: "Ok",
               allowOutsideClick: false,
             }).then((response) => {
-              console.log(response);
+              //console.log(response);
               this.reload();
             });
           })
           .catch((err) => {
-            console.log(err);
+            //console.log(err);
             this.$emit("making_action", false);
           });
       }

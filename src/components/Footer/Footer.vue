@@ -4,16 +4,14 @@
       <!-- <div class="Estilo pb-2">¡Síguenos en nuestras Redes Sociales!</div> -->
       <div class="social">
         <a href="https://www.instagram.com/ninos_360.ac/" target="_blank"
-          ><i class="bi bi-instagram"></i></a
-        ><a
+          ><i class="bi bi-instagram"></i
+        ></a>
+        <a
           href="https://www.facebook.com/Ni%C3%B1os-360-107487328516396"
           target="_blank"
-          ><i class="bi bi-facebook"></i></a
-        ><a href="https://www.twitter.com" target="_blank"
-          ><i class="bi bi-twitter"></i></a
-        ><a href="https://www.youtube.com" target="_blank"
-          ><i class="bi bi-youtube"></i></a
-        ><a
+          ><i class="bi bi-facebook"></i
+        ></a>
+        <a
           href="https://mx.linkedin.com/company/ninos-360?challengeId=AQFG6opHrSDC2wAAAYA6mWvAG5bv-3se_Sm9CLckmI0954_WufS_9ObDOQhKk98g_LqASPaRlMTc3fQ7iklv7jIcFXQTjnfvzg&submissionId=69dad665-27de-e616-ecc3-b2a6d592977d"
           target="_blank"
           ><i class="bi bi-linkedin"></i></a

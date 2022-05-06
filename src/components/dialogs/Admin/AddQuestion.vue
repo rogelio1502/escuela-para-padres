@@ -146,7 +146,7 @@ export default {
         .addQuestion(json, this.test_id)
         .then((response) => {
           $("#addQuestionModal").modal("hide");
-          console.log(response);
+          //console.log(response);
           this.$emit("making_action", false);
           this.reload();
           Swal.fire({
@@ -158,7 +158,7 @@ export default {
           this.clear();
         })
         .catch((err) => {
-          console.log(err);
+          //console.log(err);
           this.$emit("making_action", false);
           Swal.fire({
             icon: "error",

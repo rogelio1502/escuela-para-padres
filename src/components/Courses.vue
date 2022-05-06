@@ -196,7 +196,7 @@ export default {
           this.loaded = true;
         })
         .catch((err) => {
-          console.log(err.message);
+          //console.log(err.message);
         });
     },
 
