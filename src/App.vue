@@ -6,10 +6,10 @@ import Footer from "./components/Footer/Footer.vue";
 <template>
   <div class="messenger-icon">
     <a
-      href="https://www.messenger.com/t/17849101049710876"
+      href="https://api.whatsapp.com/send?phone=528135433600"
       target="_blank"
       title="Enviar Mensaje"
-      ><i class="bi bi-messenger"></i
+      ><i class="bi bi-whatsapp"></i
     ></a>
   </div>
   <NavBar></NavBar>
@@ -49,5 +49,8 @@ export default {
 .messenger-icon a :hover {
   font-size: 75px;
   transition: 1s;
+}
+.messenger-icon a i {
+  color: green;
 }
 </style>
