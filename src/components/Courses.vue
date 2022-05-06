@@ -123,8 +123,9 @@ import DataView from "primevue/dataview";
                 class="btn btn-danger m-2"
                 data-toggle="modal"
                 data-target="#removeCourseModal"
-                @click="this.delete(slotProps.data.name, slotProps.data.id)"
+                @click="remove_course(slotProps.data.name, slotProps.data.id)"
               >
+                {{ slotProps.data.name }}
                 <i class="bi bi-eraser-fill"></i>
               </button>
             </div>
@@ -200,7 +201,7 @@ export default {
         });
     },
 
-    delete(name, id) {
+    remove_course(name, id) {
       this.course_remove_name = name;
       this.course_remove_id = id;
     },

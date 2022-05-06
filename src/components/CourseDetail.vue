@@ -70,7 +70,7 @@ import AccordionTab from "primevue/accordiontab";
             class="btn btn-danger m-2"
             data-toggle="modal"
             data-target="#removeCourseModal"
-            @click="this.delete(course.name, course.id)"
+            @click="remove_course(course.name, course.id)"
           >
             <i class="bi bi-eraser-fill"></i> Eliminar Curso
           </button>
@@ -358,7 +358,7 @@ export default {
         });
       }
     },
-    delete(name, id) {
+    remove_course(name, id) {
       this.course_remove_name = name;
       this.course_remove_id = id;
     },
