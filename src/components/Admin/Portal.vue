@@ -157,9 +157,42 @@ export default {
         showCancelButton: "Cancelar",
       }).then((response) => {
         if (response.isConfirmed) {
-          console.log("Hola" + id);
           adminService
             .setStatus(id)
+            .then((response) => {
+              console.log(response);
+              this.getFathers();
+              this.getAdmins();
+              Swal.fire({
+                icon: "success",
+                title: "Tarea completada",
+                text: "Se ha completado de forma exitosa el cambio de status del usuario.",
+                showConfirmButton: "OK",
+              });
+            })
+            .catch((err) => {
+              console.log(reponse);
+              Swal.fire({
+                icon: "error",
+                title: "Ups!",
+                text: "Ha habido un error al tratar de cambiar el status del usuario.",
+                showConfirmButton: "OK",
+              });
+            });
+        }
+      });
+    },
+    setStatusAdmin(id) {
+      Swal.fire({
+        icon: "info",
+        title: "INFO",
+        text: "¿Desea cambiar el status del usuario?",
+        showConfirmButton: "Si",
+        showCancelButton: "Cancelar",
+      }).then((response) => {
+        if (response.isConfirmed) {
+          adminService
+            .setStatusAdmin(id)
             .then((response) => {
               console.log(response);
               this.getFathers();
@@ -471,6 +504,7 @@ export default {
                       class="btn btn-warning mr-2"
                       data-toggle="modal"
                       label="Agregar"
+                      v-if="sudo"
                       data-target="#addAdminModal"
                     />
                   </div>
@@ -514,7 +548,7 @@ export default {
                   >
                     <button
                       class="btn btn-warning"
-                      @click="setStatus(slotProps.data.id)"
+                      @click="setStatusAdmin(slotProps.data.id)"
                     >
                       Deshabilitar
                     </button>
@@ -522,7 +556,7 @@ export default {
                   <div v-if="!slotProps.data.enabled">
                     <button
                       class="btn btn-info"
-                      @click="setStatus(slotProps.data.id)"
+                      @click="setStatusAdmin(slotProps.data.id)"
                     >
                       Habilitar
                     </button>
