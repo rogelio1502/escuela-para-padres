@@ -1,46 +1,43 @@
-import api from './api';
+import api from "./api";
 class CourseService {
+  getAll() {
+    return api.get("/course/");
+  }
+  getCourse(id) {
+    return api.get("/course/" + id);
+  }
+  getCourseByUserByCourse(email, id) {
+    return api.get("/user/" + email + "/course/" + id);
+  }
+  getSections(id) {
+    return api.get("/course/" + id + "/sections");
+  }
+  remove(id) {
+    return api.delete("/course/" + id);
+  }
 
-    getAll() {
-        return api.get("/course/");
+  getSection(section_id, email) {
+    return api.get("/course/section/" + section_id + "/" + email);
+  }
 
-    }
-    getCourse(id){
-        return api.get("/course/" + id)
-    }
-    getCourseByUserByCourse(email,id){
-        return api.get("/user/" + email + "/course/" + id)
-    }
-    getSections(id){
-        return api.get("/course/" + id + "/sections")
+  getTest(course_id) {
+    return api.get("/test/course/" + course_id);
+  }
 
-    }
-    remove(id){
-       
-        return api.delete("/course/" + id)
+  setStatus(course_id) {
+    return api.patch("/course/set-status/" + course_id);
+  }
 
-    }
-    
+  setTestUser(user_email, test_id) {
+    return api.post("/test/done/" + user_email + "/" + test_id);
+  }
 
-    getSection(section_id, email){
-        return api.get("/course/section/" + section_id + "/" + email)
-
-    }
-
-    getTest(course_id){
-        return api.get("/test/course/" + course_id)
-    }
-
-    setStatus(course_id){
-        return api.patch("/course/set-status/" + course_id)
-    }
-
-    setTestUser(user_email, test_id){
-        return api.post('/test/done/' + user_email + "/" + test_id)
-    }
-
-    
-
-
+  generateCertificate(user_email, course_id) {
+    let json = {
+      user_email: user_email,
+      course_id: course_id,
+    };
+    return api.post("/course/get-certificate", json);
+  }
 }
 export default new CourseService();

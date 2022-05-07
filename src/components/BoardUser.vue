@@ -66,7 +66,7 @@
                   class="form-control"
                   :disabled="!edit_personal_data"
                   v-model="names"
-                  maxlength="45"
+                  maxlength="20"
                   required
                 />
                 <label for="last_name" cl>Apellido Paterno</label>
@@ -77,7 +77,7 @@
                   class="form-control"
                   :disabled="!edit_personal_data"
                   v-model="last_name"
-                  maxlength="30"
+                  maxlength="15"
                   required
                 />
                 <label for="second_last_name">Apellido Materno</label>
@@ -88,7 +88,7 @@
                   class="form-control"
                   :disabled="!edit_personal_data"
                   v-model="second_last_name"
-                  maxlength="30"
+                  maxlength="15"
                   required
                 />
                 <br />
@@ -159,22 +159,22 @@ export default {
     },
     validations() {
       this.inputErrors = [];
-      if (this.names.length < 1 || this.names.length > 45) {
+      if (this.names.length < 1 || this.names.length > 20) {
         this.inputErrors.push(
-          "Longitud del apartado Nombre(s) es inválida. (mínimo 1, máximo 45)"
+          "Longitud del apartado Nombre(s) es inválida. (mínimo 1, máximo 20)"
         );
       }
-      if (this.last_name.length < 1 || this.last_name.length > 45) {
+      if (this.last_name.length < 1 || this.last_name.length > 15) {
         this.inputErrors.push(
-          "Longitud del apartado Apellido Paterno es inválida. (mínimo 1, máximo 30)"
+          "Longitud del apartado Apellido Paterno es inválida. (mínimo 1, máximo 15)"
         );
       }
       if (
         this.second_last_name.length < 1 ||
-        this.second_last_name.length > 45
+        this.second_last_name.length > 15
       ) {
         this.inputErrors.push(
-          "Longitud del apartado Apellido Materno es inválida. (mínimo 1, máximo 30)"
+          "Longitud del apartado Apellido Materno es inválida. (mínimo 1, máximo 15)"
         );
       }
       if (this.inputErrors.length) {

@@ -252,6 +252,7 @@ import Loading from "./Utils/Loading.vue";
 import EditCourse from "./dialogs/Course/EditCourse.vue";
 import Test from "./Quiz/Test.vue";
 import Swal from "sweetalert2";
+import courseService from "../services/course.service";
 
 export default {
   components: {
@@ -387,21 +388,37 @@ export default {
       return userService.getStatus(this.currentUserEmail, this.currentRoute);
     },
     getCertificate() {
+      this.some_action = true;
       userService.getPersonalData(this.currentUserEmail).then((response) => {
         if (
           response.data.names != null &&
           response.data.last_name != null &&
           response.data.second_last_name != null
         ) {
-          Swal.fire({
-            title: "INFO",
-            text: "¡En mantenimiento!, estamos trabajando en esta nueva funcionalidad por ahora, ¡intentalo más tarde!",
-          });
+          courseService
+            .generateCertificate(this.currentUserEmail, this.currentRoute)
+            .then((response) => {
+              this.some_action = false;
+              window.open(response.data.pdf);
+
+              Swal.fire({
+                title: "¡Felicidades!",
+                text: "¡Has descargado el reconocimiento del curso correctamente!",
+              });
+            })
+            .then((err) => {
+              this.some_action = false;
+              Swal.fire({
+                title: "¡Ups!",
+                text: "¡Ha habido un error al descargar tu reconocimiento, intentalo de nuevo más tarde!",
+              });
+            });
         } else {
           Swal.fire({
             title: "INFO",
             text: "Tus datos personales están incompletos, ve a la sección de Mi Perfil para completarlos.",
           });
+          this.some_action = false;
         }
       });
     },
