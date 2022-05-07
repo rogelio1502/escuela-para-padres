@@ -400,7 +400,10 @@ export default {
             .then((response) => {
               this.some_action = false;
 
-              const linkSource = response.data.pdf;
+              const linkSource = response.data.pdf.replace(
+                "application/pdf",
+                "octet-stream"
+              );
               const downloadLink = document.createElement("a");
               const fileName = response.data.filename;
 
