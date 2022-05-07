@@ -400,7 +400,13 @@ export default {
             .then((response) => {
               this.some_action = false;
 
-              window.open(response.data.pdf);
+              const linkSource = response.data.pdf;
+              const downloadLink = document.createElement("a");
+              const fileName = response.data.filename;
+
+              downloadLink.href = linkSource;
+              downloadLink.download = fileName;
+              downloadLink.click();
               courseService
                 .removeCertificate(this.currentUserEmail)
                 .then((response) => {
