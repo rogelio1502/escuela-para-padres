@@ -410,15 +410,6 @@ export default {
               downloadLink.href = linkSource;
               downloadLink.download = fileName;
               downloadLink.click();
-              courseService
-                .removeCertificate(this.currentUserEmail)
-                .then((response) => {
-                  // console.log(response);
-                })
-                .catch((err) => {
-                  // console.log(err);
-                });
-
               Swal.fire({
                 title: "¡Felicidades!",
                 text: "¡Has descargado el reconocimiento del curso correctamente!\n Consejo: Si tu reconocimiento no se muestra, permite las ventanas emergentes en tu navegador.",

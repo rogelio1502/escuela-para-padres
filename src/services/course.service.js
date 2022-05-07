@@ -39,9 +39,5 @@ class CourseService {
     };
     return api.post("/course/get-certificate", json);
   }
-
-  removeCertificate(user_email) {
-    return api.delete("/course/remove-certificate/" + user_email);
-  }
 }
 export default new CourseService();
