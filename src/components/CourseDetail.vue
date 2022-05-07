@@ -399,7 +399,16 @@ export default {
             .generateCertificate(this.currentUserEmail, this.currentRoute)
             .then((response) => {
               this.some_action = false;
+
               window.open(response.data.pdf);
+              courseService
+                .removeCertificate(this.currentUserEmail)
+                .then((response) => {
+                  // console.log(response);
+                })
+                .catch((err) => {
+                  // console.log(err);
+                });
 
               Swal.fire({
                 title: "¡Felicidades!",
