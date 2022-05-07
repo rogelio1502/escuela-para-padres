@@ -403,14 +403,14 @@ export default {
 
               Swal.fire({
                 title: "¡Felicidades!",
-                text: "¡Has descargado el reconocimiento del curso correctamente!",
+                text: "¡Has descargado el reconocimiento del curso correctamente!\n Consejo: Si tu reconocimiento no se muestra, permite las ventanas emergentes en tu navegador.",
               });
             })
-            .then((err) => {
+            .catch((err) => {
               this.some_action = false;
               Swal.fire({
                 title: "¡Ups!",
-                text: "¡Ha habido un error al descargar tu reconocimiento, intentalo de nuevo más tarde!",
+                text: "¡Ha habido un error al descargar tu reconocimiento, intentalo de nuevo más tarde! ",
               });
             });
         } else {
