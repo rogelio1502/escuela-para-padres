@@ -15,6 +15,7 @@
         class="form-control"
         placeholder="Pregunta ..."
         required
+        maxlength="100"
       />
 
       <label for="correct_answer"> Respuesta Correcta </label>
@@ -25,6 +26,7 @@
         type="text"
         name="text"
         required
+        maxlength="50"
       />
 
       <label for="fake1"> Incorrecta 1 </label>
@@ -35,6 +37,7 @@
         name="fake1"
         placeholder="Respuesta Incorrecta 1"
         required
+        maxlength="50"
       />
 
       <label for="fake2"> Incorrecta 2 </label>
@@ -44,7 +47,7 @@
         type="text"
         name="fake2"
         placeholder="Respuesta Incorrecta 2"
-        required
+        maxlength="50"
       />
 
       <label for="fake3"> Incorrecta 3 </label>
@@ -54,7 +57,7 @@
         type="text"
         name="fake3"
         placeholder="Respuesta Incorrecta 3"
-        required
+        maxlength="50"
       />
 
       <br />

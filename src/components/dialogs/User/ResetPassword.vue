@@ -14,6 +14,7 @@
         type="password"
         name="password"
         required
+        maxlength="20"
       />
 
       <label for="password2"> Confirmar Nueva Contraseña </label>
@@ -23,6 +24,7 @@
         type="password"
         name="password2"
         required
+        maxlength="20"
       />
 
       <br />

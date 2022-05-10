@@ -25,6 +25,7 @@
         name="password"
         placeholder="Password"
         required
+        maxlength="20"
       />
 
       <label for="password2"> Confirmación </label>
@@ -35,6 +36,7 @@
         name="password2"
         placeholder="Confirmar Password"
         required
+        maxlength="20"
       />
 
       <br />

@@ -15,6 +15,7 @@
         class="form-control"
         placeholder="Email"
         required
+        maxlength="100"
       />
 
       <label for="password"> Password </label>
@@ -25,6 +26,7 @@
         type="password"
         name="password"
         required
+        maxlength="20"
       />
 
       <br />
@@ -37,6 +39,7 @@
         name="password2"
         placeholder="Confirmar Password"
         required
+        maxlength="20"
       />
       <br />
 

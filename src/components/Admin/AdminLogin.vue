@@ -27,6 +27,7 @@
           v-model="email"
           class="form-control"
           required
+          maxlength="100"
         />
       </div>
 
@@ -38,6 +39,7 @@
           v-model="password"
           class="form-control"
           required
+          maxlength="20"
         />
       </div>
       <div class="form-group">
@@ -89,6 +91,11 @@ export default {
       if (this.password.length < 7 && this.password.length > 1) {
         this.inputErrors.push("La contraseña es de al menos 7 caracteres.");
       }
+      if (this.password.length > 20) {
+        this.inputErrors.push(
+          "La longitud de la contraseña debe ser menor igual a 20."
+        );
+      }
       if (
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) ==
           false &&
@@ -126,6 +133,9 @@ export default {
               error.toString();
             //console.log(this.message, "1");
             if (this.message.includes("401")) {
+              this.message = "Credenciales Inválidas.";
+            }
+            if (this.message.includes("404")) {
               this.message = "Credenciales Inválidas.";
             }
             if (this.message.includes("Inhabilitado")) {

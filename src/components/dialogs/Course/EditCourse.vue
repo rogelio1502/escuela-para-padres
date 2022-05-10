@@ -17,6 +17,7 @@
         id="course_name_ipt"
         class="form-control"
         required
+        maxlength="45"
       />
       <label for="course_desc"> Descripción </label>
       <!-- <textarea
@@ -129,7 +130,7 @@ export default {
       }
       if (this.course_desc.length < 10) {
         this.inputErrors.push(
-          "Longitud de Descripción del curso debe ser mayor a 10"
+          "Longitud de Descripción del curso debe ser mayor a 5"
         );
       }
       if (this.course_desc.length > 255) {

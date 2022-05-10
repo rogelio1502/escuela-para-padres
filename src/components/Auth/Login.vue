@@ -120,6 +120,11 @@ export default {
       if (this.password.length < 7 && this.password.length > 1) {
         this.inputErrors.push("La contraseña es de al menos 7 caracteres.");
       }
+      if (this.password.length > 20) {
+        this.inputErrors.push(
+          "La longitud de la contraseña debe ser menor igual a 20."
+        );
+      }
       if (
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email) ==
           false &&
@@ -156,6 +161,9 @@ export default {
             }
             if (this.message.includes("400")) {
               this.message = "Usuario inhabilitado.";
+            }
+            if (this.message.includes("404")) {
+              this.message = "Credenciales Inválidas.";
             }
             if (this.message.includes("500")) {
               this.message = "Error del servidor. Favor de intentar más tarde.";

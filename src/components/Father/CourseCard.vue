@@ -34,8 +34,8 @@
           </span>
 
           <br />
-          <span><b>Descripción: </b> {{ course.Courses.description }} </span
-          ><br />
+
+          <br />
           <hr />
         </div>
       </div>

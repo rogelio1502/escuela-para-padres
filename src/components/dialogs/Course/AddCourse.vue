@@ -18,17 +18,10 @@
         id="course_name_ipt"
         class="form-control"
         required
+        maxlength="45"
       />
       <label for="course_desc"> Descripción </label>
-      <!-- <textarea
-        v-model="course_desc"
-        name="course_desc"
-        id="course_desc_ipt"
-        class="form-control"
-        style="resize: none"
-        required
-      >
-      </textarea> -->
+
       <Editor :editorToolbar="customToolbar" v-model="course_desc" />
 
       <input

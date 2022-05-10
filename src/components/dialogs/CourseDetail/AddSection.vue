@@ -18,6 +18,7 @@
         id="section_name_ipt"
         class="form-control"
         required
+        maxlength="45"
       />
 
       <label for="section_desc"> Descripción de la sección </label>
@@ -41,6 +42,7 @@
         id="section_video_ipt"
         class="form-control"
         required
+        maxlength="100"
       />
       <br />
       <FormErrors :inputErrors="inputErrors"> </FormErrors>
@@ -98,6 +100,9 @@ export default {
         this.inputErrors.push(
           "La url del video debe ser mayor a 0 caracteres."
         );
+      }
+      if (!this.section_video.includes("https://www.youtube.com/watch?")) {
+        this.inputErrors.push("La url es inválida");
       }
       if (this.section_video.length > 255) {
         this.inputErrors.push(
