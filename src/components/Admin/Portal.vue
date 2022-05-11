@@ -3,10 +3,12 @@ import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Dialog from "primevue/dialog/Dialog.vue";
 import Button from "primevue/button";
+import InputText from "primevue/inputtext";
 </script>
 <script>
 import adminService from "../../services/admin.service";
 import courseService from "../../services/course.service";
+import { FilterMatchMode } from "primevue/api";
 import Swal from "sweetalert2";
 export default {
   mounted() {
@@ -28,6 +30,12 @@ export default {
       showModal: false,
       enableClose: false,
       some_action: false,
+      filters: {
+        name: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+      },
+      filters1: {
+        email: { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+      },
     };
   },
   methods: {
@@ -324,23 +332,37 @@ export default {
               responsiveLayout="scroll"
               :loading="coursesLoaded"
               ref="dta"
+              dataKey="id"
+              v-model:filters="filters"
+              showGridlines
             >
               <template #loading> Cargando datos... </template>
               <template #header>
-                <div style="text-align: left" class="d-flex">
-                  <Button
-                    icon="pi pi-external-link"
-                    label="Export CSV"
-                    @click="exportAdminsCSV($event)"
-                  />
+                <div class="d-flex justify-content-between">
+                  <div style="text-align: left">
+                    <Button
+                      icon="pi pi-external-link"
+                      label="Export CSV"
+                      @click="exportAdminsCSV($event)"
+                    />
+                  </div>
+                  <div>
+                    <p>Cursos Registrados: {{ courses.length }}</p>
+                  </div>
                 </div>
                 <div>
-                  <p>Cursos Registrados: {{ courses.length }}</p>
+                  <InputText
+                    type="text"
+                    v-model="filters['name'].value"
+                    @keydown.enter="filterCallback()"
+                    class="p-column-filter"
+                    :placeholder="`Buscar por nombre`"
+                  />
                 </div>
               </template>
               <template #empty> Ningún curso se ha registrado. </template>
               <Column field="id" header="Id" :sortable="true"></Column>
-              <Column header="Título" :sortable="true">
+              <Column field="name" header="Título">
                 <template #body="slotProps">
                   <a
                     :href="
@@ -487,6 +509,9 @@ export default {
               responsiveLayout="scroll"
               :loading="admins_loaded"
               ref="dta"
+              dataKey="id"
+              v-model:filters="filters1"
+              showGridlines
             >
               <template #loading> Cargando datos... </template>
               <template #header>
@@ -508,6 +533,16 @@ export default {
                       data-target="#addAdminModal"
                     />
                   </div>
+                </div>
+                <br />
+                <div>
+                  <InputText
+                    type="text"
+                    v-model="filters1['email'].value"
+                    @keydown.enter="filterCallback()"
+                    class="p-column-filter"
+                    :placeholder="`Buscar por nombre`"
+                  />
                 </div>
               </template>
               <template #empty> Ningún Admin se ha registrado. </template>
@@ -589,6 +624,9 @@ export default {
               class="table"
               :loading="fathers_loaded"
               ref="dtf"
+              dataKey="id"
+              v-model:filters="filters1"
+              showGridlines
             >
               <template #loading> Cargando datos... </template>
               <template #header>
@@ -611,8 +649,18 @@ export default {
                     />
                   </div>
                 </div>
+                <br />
                 <div>
                   <p>Padres Registrados: {{ users.length }}</p>
+                </div>
+                <div>
+                  <InputText
+                    type="text"
+                    v-model="filters1['email'].value"
+                    @keydown.enter="filterCallback()"
+                    class="p-column-filter"
+                    :placeholder="`Buscar por nombre`"
+                  />
                 </div>
               </template>
               <template #empty> Ningún Padre se ha registrado. </template>
