@@ -541,7 +541,7 @@ export default {
                     v-model="filters1['email'].value"
                     @keydown.enter="filterCallback()"
                     class="p-column-filter"
-                    :placeholder="`Buscar por nombre`"
+                    :placeholder="`Buscar por email`"
                   />
                 </div>
               </template>
@@ -659,7 +659,7 @@ export default {
                     v-model="filters1['email'].value"
                     @keydown.enter="filterCallback()"
                     class="p-column-filter"
-                    :placeholder="`Buscar por nombre`"
+                    :placeholder="`Buscar por email`"
                   />
                 </div>
               </template>
